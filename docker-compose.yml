@@ -1,0 +1,15 @@
+services:
+  client.administrators:
+    image: ${DOCKER_REGISTRY-}client.administrators
+    build:
+      context: .
+      dockerfile: src/Client.Administrators.Presentation/Dockerfile
+    ports:
+      - "8000:8000"
+      - "8001:8001"
+    networks:
+      shopeefood-clone-net:
+
+networks:
+  shopeefood-clone-net:
+    external: true
