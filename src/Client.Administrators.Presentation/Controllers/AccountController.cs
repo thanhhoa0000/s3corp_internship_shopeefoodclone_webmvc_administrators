@@ -55,7 +55,7 @@ public class AccountController : Controller
 
                 _tokenHandler.SetTokens(loginResponse.AccessToken, loginResponse.RefreshToken);
 
-                if (roleClaim == "Admin")
+                if (roleClaim == "Admin" || roleClaim == "Vendor")
                 {
                     TempData["success"] = $"Xin chào {nameClaim}";
 

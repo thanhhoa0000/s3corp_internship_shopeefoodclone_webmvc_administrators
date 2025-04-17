@@ -22,6 +22,19 @@ EXPOSE 8001
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
+
+RUN apt-get update && \
+    apt-get install -y curl gnupg && \
+    curl -fsSL https://deb.nodesource.com/setup_18.x | bash - && \
+    apt-get install -y nodejs && \
+    node -v && npm -v
+
+RUN npm install jquery && \
+    npm install --save-dev @types/jquery && \
+    npm install --save-dev @types/jquery.validation && \
+    npm install --save @types/jquery-validation-unobtrusive
+
+
 COPY ["Directory.Packages.props", "."]
 COPY ["Directory.Build.props", "."]
 COPY ["src/Client.Administrators.Presentation/Client.Administrators.Presentation.csproj", "src/Client.Administrators.Presentation/"]

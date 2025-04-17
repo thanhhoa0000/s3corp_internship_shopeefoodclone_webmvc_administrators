@@ -19,15 +19,18 @@
                 <div class="container-fluid justify-content-between">
                     <!-- Left Section: Logo + Nav items -->
                     <div class="d-flex align-items-center">
-                        <a class="navbar-brand me-5" asp-controller="Home" asp-action="Index">
-                            <img id="logo-img" src="~/images/shopeefoodvn.png" alt="ShopeeFood">
-                        </a>
+                        <div>
+                            <a class="navbar-brand me-5" asp-controller="Home" asp-action="Index">
+                                <img id="logo-img" src="~/images/shopeefoodvn.png" alt="ShopeeFood">
+                            </a>
+                            <div class="logo-title d-flex justify-content-end">Administrator</div>
+                        </div>
                         <ul class="navbar-nav main-nav flex-row ms-5 ps-3">
                             <li class="nav-item p-1">
-                                <a class="nav-link main-nav-item" code-name="stores" onclick="event.preventDefault(); getSectionItems(this.getAttribute('code-name'))">Cửa hàng</a>
+                                <a class="nav-link main-nav-item" code-name="stores">Cửa hàng</a>
                             </li>
                             <li class="nav-item p-1">
-                                <a class="nav-link main-nav-item" code-name="orders" onclick="event.preventDefault(); getSectionItems(this.getAttribute('code-name'))">Đơn hàng</a>
+                                <a class="nav-link main-nav-item" code-name="orders">Đơn hàng</a>
                             </li>
                         </ul>
                     </div>
@@ -49,7 +52,7 @@
                                 <ul class="dropdown-menu">
                                     <li class="user-menu-item logout">
                                         <a class="dropdown-item text-danger" asp-area="" asp-controller="Account" asp-action="Logout">
-                                            <i class="bi bi-box-arrow-right me-1"></i>Đăng xuất
+                                            <i class="bi bi-box-arrow-right me-2"></i>Đăng xuất
                                         </a>
                                     </li>
                                 </ul>
@@ -60,7 +63,7 @@
             </nav>
         </header>
     
-        <div class="container">
+        <div class="container main-content">
             <main role="main" class="pb-3">
                 @RenderBody()
                 <partial name="_Notifications" />

@@ -11,6 +11,7 @@
           "Client.Administrators.Application": "1.0.0",
           "Humanizer": "2.14.1",
           "Microsoft.AspNetCore.Cors": "2.3.0",
+          "Microsoft.TypeScript.MSBuild": "5.8.1",
           "Microsoft.VisualStudio.Azure.Containers.Tools.Targets": "1.21.0",
           "Microsoft.VisualStudio.Web.CodeGeneration.Design": "8.0.5",
           "NLog": "5.4.0",
@@ -1195,6 +1196,7 @@
           }
         }
       },
+      "Microsoft.TypeScript.MSBuild/5.8.1": {},
       "Microsoft.VisualStudio.Azure.Containers.Tools.Targets/1.21.0": {},
       "Microsoft.VisualStudio.Web.CodeGeneration/8.0.5": {
         "dependencies": {
@@ -2270,6 +2272,13 @@
       "sha512": "sha512-y6DiuacjlIfXH3XVQG5htf+4oheinZAo7sHbITB3z7yCXQec48f9ZhGSXkr+xn1bfl73Yc3ZQEW2peJ5X68AvQ==",
       "path": "microsoft.net.stringtools/17.8.3",
       "hashPath": "microsoft.net.stringtools.17.8.3.nupkg.sha512"
+    },
+    "Microsoft.TypeScript.MSBuild/5.8.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-Kp00RyOp4A427SHj/o+BFRWasbKlB7/gKWefybtb0ANwBCwsl5V2Mci9zQsbdcja0UCWeFEfPxHovtPe8w5WdA==",
+      "path": "microsoft.typescript.msbuild/5.8.1",
+      "hashPath": "microsoft.typescript.msbuild.5.8.1.nupkg.sha512"
     },
     "Microsoft.VisualStudio.Azure.Containers.Tools.Targets/1.21.0": {
       "type": "package",

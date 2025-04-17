@@ -7,6 +7,7 @@ public static partial class ServicesConfiguration
         services.AddScoped<IBaseService, BaseService>();
         services.AddScoped<ITokenProcessor, TokenProcessor>();
         services.AddScoped<IAccountService, AccountService>();
+        services.AddScoped<IStoreService, StoreService>();
         
         return services;
     }
