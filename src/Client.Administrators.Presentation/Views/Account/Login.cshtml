@@ -1,0 +1,32 @@
+﻿@model LoginViewModel
+@{
+    ViewData["title"] = "Login | ShopeeFood.vn | Administrator";
+}
+<div class="container mt-5 login-form-container">
+    <div class="card p-4 shadow-sm mx-auto">
+        <h4 class="text-center">Đăng nhập</h4>
+        <form method="post" asp-controller="Account" asp-action="Login">
+            @Html.AntiForgeryToken()
+            <div class="mb-3">
+                <label class="form-label">Tên đăng nhập</label>
+                <input asp-for="UserName" type="text" class="form-control" placeholder="Tên đăng nhập">
+                <span asp-validation-for="UserName" class="text-danger" />
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Mật khẩu</label>
+                <input asp-for="Password" type="password" class="form-control" placeholder="Mật khẩu" />
+                <span asp-validation-for="Password" class="text-danger" />
+            </div>
+            <button type="submit" class="btn btn-primary w-100">Đăng nhập</button>
+        </form>
+    </div>
+</div>
+
+@section Styles {
+    <link rel="stylesheet" href="~/css/login.css" asp-append-version="true"/>
+}
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+    <script src="~/js/login.js" asp-append-version="true"></script>
+}
