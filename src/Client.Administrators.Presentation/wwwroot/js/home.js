@@ -1,14 +1,14 @@
 $(document).ready(function () {
-    let cate = JSON.parse(localStorage.getItem('section'));
+    let section = JSON.parse(localStorage.getItem('section'));
 
-    if (!cate) {
-        cate = "food";
-        localStorage.setItem('section', JSON.stringify("stores"));
+    if (!section) {
+        section = "stores";
+        localStorage.setItem('section', JSON.stringify(section));
     }
 
     document.querySelectorAll(`.main-nav-item`).forEach((item) => {
         item.classList.remove("active");
     })
 
-    $(`.main-nav-item[code-name='${cate}']`).addClass("active");
+    $(`.main-nav-item[code-name='${section}']`).addClass("active");
 });

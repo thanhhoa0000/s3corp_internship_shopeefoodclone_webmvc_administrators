@@ -14,5 +14,5 @@ function getSectionItems(section) {
         window.location.href = "/";
     }
 
-    localStorage.setItem('cate', JSON.stringify(section));
+    localStorage.setItem('section', JSON.stringify(section));
 }
