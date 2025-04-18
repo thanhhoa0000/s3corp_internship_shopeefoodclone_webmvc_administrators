@@ -1,23 +1,50 @@
 ﻿@model HomeViewModel
 @{
+    var currentTime = TimeOnly.FromDateTime(DateTime.Now);
+    var vendorId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+    
     ViewData["title"] = "Home Page | ShopeeFood.vn | Administrator";
 }
 
-<div class="home-stores-section">
-    <div class="menu">
+<div class="home-stores-section row p-3" vendor-id="@vendorId">
+    <div class="menu col-auto">
         <div class="see-stores-list">
             Danh sách cửa hàng
         </div>
+        <div class="add-store">
+            Tạo cửa hàng mới
+        </div>
     </div>
     
-    <div class="main-content">
+    <div class="main-content col-auto">
         @if (Model.Stores is not null)
         {
             var stores = Model.Stores;
 
             foreach (var store in stores)
             {
-                <h6>@store.Name</h6>
+                <div class="store-item ms-3 mb-2 row">
+                    <a class="" store-id="@store.Id">
+                        <div class="opentime-status">
+                            <span class="status @(currentTime >= store.OpeningHour && currentTime <= store.ClosingHour ? "online" : "offline")"></span>
+                        </div>
+                        <div class="store-img">
+                            <img
+                                class=""
+                                alt=""
+                                src="@Url.Content($"~/images{store.CoverImagePath}")"
+                                onerror="
+                                                this.onerror = null; 
+                                                this.src = '/images/stores/default-store-cover-img.jpg'"/>
+                        </div>
+                        <div class="store-info">
+                            <div class="basic-info">
+                                <h4><img class="" alt="" src="~/images/partner2x.png" title="Đây là 1 trong những Merchants được đánh giá cao trong ShopeeFood"/> @store.Name</h4>
+                                <div>Số @store.StreetName, @store.Ward!.FullName, @store.Ward.District!.FullName, @store.Ward.District.Province!.Name</div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
             }
         }
     </div>

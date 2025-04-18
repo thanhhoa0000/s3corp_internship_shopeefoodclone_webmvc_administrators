@@ -2,5 +2,5 @@
 
 public interface IStoreService
 {
-    Task<Response?> GetStoresByVendorIdAsync(Guid vendorId);
+    Task<Response?> GetStoresByVendorIdAsync(GetStoresByVendorIdRequest request);
 }

@@ -9,12 +9,13 @@ public class StoreService : IStoreService
         _service = service;
     }
 
-    public async Task<Response?> GetStoresByVendorIdAsync(Guid vendorId)
+    public async Task<Response?> GetStoresByVendorIdAsync(GetStoresByVendorIdRequest request)
     {
         return await _service.SendAsync(new Request()
         {
-            ApiMethod = ApiMethod.Get,
-            Url = $"{ApiUrlProperties.ApiGatewayUrl}/stores/vendor/{vendorId}",
+            ApiMethod = ApiMethod.Post,
+            Body = request,
+            Url = $"{ApiUrlProperties.ApiGatewayUrl}/stores/vendor",
         }, bearer: true);
     }
 }

@@ -25,13 +25,20 @@ html, body {
     overflow-x: hidden;
 }
 
-html {
-    position: relative;
-    min-height: 100%;
+body {
+    overflow-x: hidden;
+    background-color: var(--primary-background-color);
+    font-family: var(--primary-font-family), sans-serif;
+    color: #252525;
 }
 
-body {
-    font-family: var(--primary-font-family), sans-serif;
+footer {
+    width: 100%;
+    margin: auto;
+}
+
+footer .container {
+    margin: 0 auto;
 }
 
 .btn-outline-orange {
@@ -84,6 +91,7 @@ body {
     font-size: 14px;
     height: 50px;
     margin-top: 20px;
+    cursor: pointer;
 }
 
 .main-nav-item.active {
@@ -104,6 +112,37 @@ body {
     color: var(--primary-color);
 }
 
-footer {
-    margin: auto;
+.opentime-status {
+    top: 12px;
+    left: -4px;
+    z-index: 1;
+    position: relative;
+}
+
+.opentime-status .status {
+    border-radius: 50%;
+    cursor: pointer;
+    width: 15px;
+    height: 15px;
+    display: block;
+    position: relative;
+    z-index: 2;
+}
+
+.opentime-status .online {
+    background-color: #6cc942;
+    color: #329900;
+}
+
+.opentime-status .online-title {
+    color: #329900;
+}
+
+.opentime-status .offline {
+    background-color: #82857e;
+    color: #727571;
+}
+
+.opentime-status .offline-title {
+    color: #8e938c;
 }

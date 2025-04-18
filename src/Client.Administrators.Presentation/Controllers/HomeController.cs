@@ -12,19 +12,30 @@ public class HomeController : Controller
         _storeService = storeService;
         _logger = logger;
     }
-
-    public async Task<IActionResult> Index()
+    
+    [HttpGet]
+    public IActionResult Index()
     {
         if (!User.Identity!.IsAuthenticated)
         {
             return RedirectToAction("Login", "Account");
         }
         
+        return View(new HomeViewModel());
+    }
+
+    [HttpPost]
+    public async Task<IActionResult> Index(Guid vendorId, int pageSize = 5, int pageNumber = 1)
+    {
         var viewModel = new HomeViewModel();
-        var vendorId = User.FindFirstValue(ClaimTypes.NameIdentifier);
         var stores = new List<StoreDto>();
-        
-        Response? storesResponse = await _storeService.GetStoresByVendorIdAsync(Guid.Parse(vendorId!));
+
+        Response? storesResponse = await _storeService.GetStoresByVendorIdAsync(new GetStoresByVendorIdRequest
+        {
+            VendorId = vendorId,
+            PageNumber = pageNumber,
+            PageSize = pageSize,
+        });
         
         if (storesResponse!.IsSuccessful)
             stores = JsonSerializer.Deserialize<List<StoreDto>>(
