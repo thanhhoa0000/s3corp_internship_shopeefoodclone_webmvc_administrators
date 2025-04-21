@@ -13,7 +13,7 @@ $(function () {
     }
 });
 $(function () {
-    $.validator.unobtrusive.parse('form');
+    // $.validator.unobtrusive.parse('form');
     $('form input').on('blur', function () {
         $(this).valid();
     });

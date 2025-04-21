@@ -13,7 +13,7 @@
     <div class="store-details-section">
         <h4>@store.Name</h4>
         
-        <a type="button" class="btn btn-orange d-flex align-items-center justify-content-end ms-auto" asp-controller="Product" asp-action="Create">Thêm sản phẩm</a>
+        <a type="button" class="btn btn-orange d-flex align-items-center justify-content-end ms-auto" asp-controller="Product" asp-action="Create" asp-route-storeId="@storeId">Thêm sản phẩm</a>
     </div>
 }
 

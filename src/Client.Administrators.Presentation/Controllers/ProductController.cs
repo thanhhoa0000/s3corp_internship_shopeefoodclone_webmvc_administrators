@@ -17,5 +17,5 @@ public class ProductController : Controller
     }
     
     [HttpGet]
-    public IActionResult Create() => View(new CreateProductViewModel());
+    public IActionResult Create(Guid storeId) => View(new CreateProductViewModel { StoreId = storeId });
 }

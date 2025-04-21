@@ -27,7 +27,6 @@ $(document).on("keypress", '#Name', (event: JQuery.KeyPressEvent) => {
     }
 });
 
-
 $(document).on("input", '#Name', function (this: HTMLInputElement) {
     this.value = this.value.replace(/[^a-zA-Z0-9\-|]/g, '');
 });
