@@ -1,0 +1,26 @@
+﻿@model StoreDetailsViewModel
+@{
+    // var vendorId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+    var store = Model.Store;
+    
+    ViewData["title"] = $"{store!.Name ?? ""} | ShopeeFood.vn | Administrator";
+}
+
+@if (store.Name is not null)
+{
+    var storeId = store.Id;
+    
+    <div class="store-details-section">
+        <h4>@store.Name</h4>
+        
+        <a type="button" class="btn btn-orange d-flex align-items-center justify-content-end ms-auto" asp-controller="Product" asp-action="Create">Thêm sản phẩm</a>
+    </div>
+}
+
+@section Styles {
+    <link rel="stylesheet" href="~/css/store-details.css" asp-append-version="true"/>
+}
+
+@section Scripts {
+    <script src="~/js/store-details.js" asp-append-version="true"></script>
+}

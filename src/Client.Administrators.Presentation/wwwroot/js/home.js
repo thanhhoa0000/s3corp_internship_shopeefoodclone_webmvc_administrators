@@ -2,7 +2,7 @@
 $(function () {
     let section = localStorage.getItem('section');
     let seeStoresList = $('.see-stores-list');
-    const menuItems = document.querySelectorAll(".menu div");
+    const menuItems = $('.menu div');
     const vendorId = $('.home-stores-section').attr('vendor-id');
     if (!section) {
         section = "stores";
@@ -15,18 +15,21 @@ $(function () {
         item.classList.remove("active");
     });
     $(`.main-nav-item[code-name='${section}']`).addClass("active");
-    getStores(vendorId);
-    let storeItems = $('.store-item');
     seeStoresList.addClass('active');
-    storeItems.show();
-    menuItems.forEach(item => {
-        item.addEventListener("click", function () {
-            menuItems.forEach(item => item.classList.remove("active"));
-            this.classList.add("active");
-            const isStoreList = this.classList.contains('see-stores-list');
-            toggleStoreItems(isStoreList);
-        });
+    menuItems.on('click', function () {
+        const isStoreList = $(this).hasClass('see-stores-list');
+        const isCreateStore = $(this).hasClass('add-store');
+        menuItems.removeClass('active');
+        $(this).addClass('active');
+        toggleStoreItems(isStoreList);
+        if (isStoreList) {
+            getStores($('.home-stores-section').attr('vendor-id'));
+        }
+        if (isCreateStore) {
+            getCreateStoreForm();
+        }
     });
+    seeStoresList.trigger('click');
 });
 function getStores(vendorId) {
     $.ajax({
@@ -43,8 +46,27 @@ function getStores(vendorId) {
         }
     });
 }
+function getCreateStoreForm() {
+    $.ajax({
+        url: `/Store/Create`,
+        type: 'GET',
+        success: (response) => {
+            let parsed = $('<div>').html(response);
+            $('.main-content').replaceWith(parsed.find('.main-content'));
+            if (gatewayUrl) {
+                getProvinces();
+            }
+            else {
+                document.addEventListener("configLoaded", () => getProvinces(), { once: true });
+            }
+        },
+        error: (xhr, status, error) => {
+            console.error("Failed to get form");
+        }
+    });
+}
 function toggleStoreItems(show) {
-    const storeItems = $('.store-item'); // always get fresh reference
+    const storeItems = $('.store-item');
     show ? storeItems.show() : storeItems.hide();
 }
 //# sourceMappingURL=home.js.map

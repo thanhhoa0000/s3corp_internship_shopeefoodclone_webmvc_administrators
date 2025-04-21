@@ -12,7 +12,7 @@ $(function() {
         if (activeItem) {
             activeItem.classList.add("active");
         }
-    }
+    }    
 });
 
 $(function() {

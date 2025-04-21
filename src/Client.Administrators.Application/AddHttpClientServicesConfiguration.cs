@@ -7,6 +7,7 @@ public static partial class ServicesConfiguration
         services.AddHttpClient<ITokenProcessor, TokenProcessor>();
         services.AddHttpClient<IAccountService, AccountService>();
         services.AddHttpClient<IStoreService, StoreService>();
+        services.AddHttpClient<IProductService, ProductService>();
         
         return services;
     }

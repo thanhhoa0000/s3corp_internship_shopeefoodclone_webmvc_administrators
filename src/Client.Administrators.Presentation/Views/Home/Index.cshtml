@@ -24,7 +24,7 @@
             foreach (var store in stores)
             {
                 <div class="store-item ms-3 mb-2 row">
-                    <a class="" store-id="@store.Id">
+                    <a class="" store-id="@store.Id" asp-controller="Store" asp-action="Details" asp-route-storeId="@store.Id">
                         <div class="opentime-status">
                             <span class="status @(currentTime >= store.OpeningHour && currentTime <= store.ClosingHour ? "online" : "offline")"></span>
                         </div>
@@ -52,8 +52,10 @@
 
 @section Styles {
     <link rel="stylesheet" href="~/css/home.css" asp-append-version="true"/>
+    <link rel="stylesheet" href="~/css/store.css" asp-append-version="true"/>
 }
 
 @section Scripts {
     <script src="~/js/home.js" asp-append-version="true"></script>
+    <script src="~/js/store.js" asp-append-version="true"></script>
 }

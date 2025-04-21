@@ -37,9 +37,9 @@
 
                     <!-- Right Section: Search + Login/User dropdown -->
                     <div class="d-flex align-items-center me-5">
-                        <button class="btn btn-outline-secondary me-3">
-                            <i class="bi bi-search"></i>
-                        </button>
+                        @* <button class="btn btn-outline-secondary me-3"> *@
+                        @*     <i class="bi bi-search"></i> *@
+                        @* </button> *@
 
                         @if (User.Identity is null || !User.Identity.IsAuthenticated)
                         {
@@ -72,12 +72,14 @@
 
         <footer class="border-top footer text-muted">
             <div class="container">
-                &copy; 2025 - Client.Administrators.Presentation - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                S3Corp Internship - ShopeeFoodClone Administrator
             </div>
         </footer>
     
         <script src="~/lib/jquery/dist/jquery.min.js"></script>
         <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+        <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
         <script src="~/js/site.js" asp-append-version="true"></script>
         @await RenderSectionAsync("Scripts", required: false)
