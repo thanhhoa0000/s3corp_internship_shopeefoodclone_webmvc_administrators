@@ -1,0 +1,12 @@
+{
+  "dependencies": {
+    "@types/jquery-validation-unobtrusive": "^3.2.35",
+    "@types/validator": "^13.15.0",
+    "jquery": "^3.7.1",
+    "jquery-validation": "^1.21.0"
+  },
+  "devDependencies": {
+    "@types/jquery": "^3.5.32",
+    "@types/jquery.validation": "^1.17.0"
+  }
+}

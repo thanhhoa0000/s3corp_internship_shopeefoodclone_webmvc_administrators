@@ -1,27 +1,30 @@
-# See https://aka.ms/customizecontainer to learn how to customize your debug container and how Visual Studio uses this Dockerfile to build your images for faster debugging.
-
-# This stage is used when running from VS in fast mode (Default for Debug configuration)
+# Base stage for running the application
 FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS base
 
-RUN mkdir -p /home/app/.aspnet/https
-
-COPY ./certs/.aspnet/https/Client.Administrators.pfx /home/app/.aspnet/https/Client.Administrators.pfx
-
-RUN chown -R app:app /home/app/.aspnet/https
-
-RUN mkdir -p /keys && chmod -R 777 /keys
+RUN mkdir -p /home/app/.aspnet/https && \
+    chown -R app:app /home/app/.aspnet/https && \
+    mkdir -p /keys && chmod -R 777 /keys
 
 USER app
 WORKDIR /app
+COPY ./certs/.aspnet/https/Client.Administrators.pfx /home/app/.aspnet/https/Client.Administrators.pfx
 COPY ["nlog.config", "."]
-EXPOSE 8000
-EXPOSE 8001
+EXPOSE 8000 8001
 
-
-# This stage is used to build the service project
+# Build stage
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
+
+# Install Node.js and dependencies
+RUN apt-get update && \
+    apt-get install -y curl gnupg && \
+    curl -fsSL https://deb.nodesource.com/setup_18.x | bash - && \
+    apt-get install -y nodejs && \
+    npm install jquery && \
+    npm install --save-dev @types/jquery @types/jquery.validation @types/jquery-validation-unobtrusive && \
+    apt-get clean && rm -rf /var/lib/apt/lists/*
+
 COPY ["Directory.Packages.props", "."]
 COPY ["Directory.Build.props", "."]
 COPY ["src/Client.Administrators.Presentation/Client.Administrators.Presentation.csproj", "src/Client.Administrators.Presentation/"]
@@ -31,12 +34,11 @@ COPY . .
 WORKDIR "/src/src/Client.Administrators.Presentation/"
 RUN dotnet build "./Client.Administrators.Presentation.csproj" -c $BUILD_CONFIGURATION -o /app/build
 
-# This stage is used to publish the service project to be copied to the final stage
+# Publish stage
 FROM build AS publish
-ARG BUILD_CONFIGURATION=Release
 RUN dotnet publish "./Client.Administrators.Presentation.csproj" -c $BUILD_CONFIGURATION -o /app/publish /p:UseAppHost=false
 
-# This stage is used in production or when running from VS in regular mode (Default when not using the Debug configuration)
+# Final stage
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .

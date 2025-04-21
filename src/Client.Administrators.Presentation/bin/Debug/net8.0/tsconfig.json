@@ -1,0 +1,23 @@
+{
+  "compileOnSave": true,
+  "compilerOptions": {
+    "noImplicitAny": false,
+    "noEmitOnError": true,
+    "removeComments": false,
+    "sourceMap": true,
+    "target": "ES2022",
+    "strict": true,
+    "allowSyntheticDefaultImports": true,
+    "outDir": "wwwroot/js"
+  },
+  "include": [
+    "wwwroot/ts/**/*.ts"
+  ],
+  "exclude": [
+    "node_modules",
+    "wwwroot/js"
+  ],
+  "dependencies": {
+    "jquery": "^3.6.0"
+  }
+}

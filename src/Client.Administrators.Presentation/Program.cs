@@ -14,13 +14,13 @@ try
     
     builder.Services.AddDataProtection()
         .PersistKeysToFileSystem(new DirectoryInfo(@"/keys/"))
-        .SetApplicationName("ShopeeFoodClone");
+        .SetApplicationName("ShopeeFoodClone_Admin");
     
     builder.Services.AddControllersWithViews();
     builder.Services.AddHttpContextAccessor();
     
     builder.Services
-        .AddHttpClient("ShopeeFoodClone")
+        .AddHttpClient("ShopeeFoodClone_Admin")
         .ConfigurePrimaryHttpMessageHandler(() => new HttpClientHandler
             {
                 ServerCertificateCustomValidationCallback = HttpClientHandler.DangerousAcceptAnyServerCertificateValidator

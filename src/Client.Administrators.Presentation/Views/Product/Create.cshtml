@@ -1,0 +1,38 @@
+﻿@model CreateProductViewModel
+
+@{
+    ViewData["title"] = $"Create product | ShopeeFood.vn | Administrator";
+}
+
+<form asp-controller="Product" asp-action="Create" method="post">
+    @Html.AntiForgeryToken()
+    <input type="hidden" asp-for="StoreId" value="@Model.StoreId"/>
+
+    <div class="mb-3">
+        <label class="form-label">Tên sản phẩm<span class="ms-1 text-danger">*</span></label>
+        <input asp-for="Name" type="text" class="form-control" placeholder="Tên sản phẩm"/>
+        <span asp-validation-for="Name" class="validation-message text-danger"/>
+    </div>
+    
+    <div class="mb-3">
+        <label class="form-label">Mô tả sản phẩm<span class="ms-1 text-danger">*</span></label>
+        <textarea asp-for="Description" type="text" class="form-control" placeholder="Mô tả sản phẩm..."></textarea>
+        <span asp-validation-for="Description" class="validation-message text-danger"/>
+    </div>
+    
+    <div class="mb-3">
+        <label class="form-label">Giá<span class="ms-1 text-danger">*</span></label>
+        <textarea asp-for="Price" type="text" class="form-control" placeholder="Giá tiền"></textarea>
+        <span asp-validation-for="Price" class="validation-message text-danger"/>
+    </div>
+
+    <button class="btn btn-orange d-flex align-items-center justify-content-end ms-auto" type="submit" onclick="">Tạo sản phẩm</button>
+</form>
+
+@section Styles {
+    <link rel="stylesheet" href="~/css/product-create.css" asp-append-version="true"/>
+}
+
+@section Scripts {
+    <script src="~/js/product-create.js" asp-append-version="true"></script>
+}

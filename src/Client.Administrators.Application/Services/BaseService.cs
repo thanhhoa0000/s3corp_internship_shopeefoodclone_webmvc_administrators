@@ -17,7 +17,7 @@ public class BaseService : IBaseService
     {
         try
         {
-            HttpClient client = _httpClientFactory.CreateClient("ShopeeFoodClone");
+            HttpClient client = _httpClientFactory.CreateClient("ShopeeFoodClone_Admin");
             
             _tokenProcessor.Client = client;
             _tokenProcessor.Logger = _logger;

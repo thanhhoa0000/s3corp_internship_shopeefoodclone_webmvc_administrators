@@ -13,7 +13,7 @@ public class TokenRefreshMiddleware
 
     public async Task InvokeAsync(HttpContext context, ITokenProcessor processor)
     {
-        processor.Client = _clientFactory.CreateClient("ShopeeFoodClone");
+        processor.Client = _clientFactory.CreateClient("ShopeeFoodClone_Admin");
         processor.Logger = LogManager.GetLogger(nameof(TokenRefreshMiddleware));
 
         var accessToken = processor.GetAccessToken();

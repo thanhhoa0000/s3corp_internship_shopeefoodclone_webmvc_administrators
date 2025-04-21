@@ -1,22 +1,148 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700&display=swap');
+
+:root {
+    --primary-color: #EE4D2D;
+    --primary-background-color: #F2F2F2;
+    --primary-font-family: "Noto Sans", Arial, sans-serif;
+}
+
 html {
-  font-size: 14px;
+    font-size: 14px;
+    scroll-behavior: smooth;
 }
 
 @media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
+    html {
+        font-size: 16px;
+    }
 }
 
 .btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
-  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+    box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
 }
 
-html {
-  position: relative;
-  min-height: 100%;
+html, body {
+    overflow-x: hidden;
 }
 
 body {
-  margin-bottom: 60px;
+    overflow-x: hidden;
+    background-color: var(--primary-background-color);
+    font-family: var(--primary-font-family), sans-serif;
+    color: #252525;
+}
+
+footer {
+    width: 100%;
+    margin: auto;
+}
+
+footer .container {
+    margin: 0 auto;
+}
+
+.btn-outline-orange {
+    color: var(--primary-color);
+    border: 1px solid var(--primary-color);
+    background-color: transparent;
+    transition: 0.3s;
+    font-size: 14px;
+    font-weight: 400;
+}
+
+.btn-outline-orange:hover {
+    color: white;
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+}
+
+.btn-orange {
+    color: white;
+    background-color: var(--primary-color);
+    border: 1px solid var(--primary-color);
+    transition: 0.3s;
+    font-size: 14px;
+    font-weight: 400;
+}
+
+.btn-orange:hover {
+    background-color: #d66a00;
+    border-color: #d66a00;
+    color: white;
+}
+
+
+#login-button {
+    width: 120px;
+    height: 37px;
+    margin-right: 200px;
+}
+
+#main-nav {
+    height: 70px;
+}
+
+#navbarNav {
+    padding-right: 200px;
+    margin-left: -150px;
+}
+
+.nav-link {
+    font-size: 14px;
+    height: 50px;
+    margin-top: 20px;
+    cursor: pointer;
+}
+
+.main-nav-item.active {
+    border-bottom: 4px solid var(--primary-color);
+    color: var(--primary-color) !important;
+    font-weight: 700;
+}
+
+#logo-img {
+    margin-left: 110px;
+    width: 153px;
+    height: auto;
+}
+
+.logo-title {
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--primary-color);
+}
+
+.opentime-status {
+    top: 12px;
+    left: -4px;
+    z-index: 1;
+    position: relative;
+}
+
+.opentime-status .status {
+    border-radius: 50%;
+    cursor: pointer;
+    width: 15px;
+    height: 15px;
+    display: block;
+    position: relative;
+    z-index: 2;
+}
+
+.opentime-status .online {
+    background-color: #6cc942;
+    color: #329900;
+}
+
+.opentime-status .online-title {
+    color: #329900;
+}
+
+.opentime-status .offline {
+    background-color: #82857e;
+    color: #727571;
+}
+
+.opentime-status .offline-title {
+    color: #8e938c;
 }
