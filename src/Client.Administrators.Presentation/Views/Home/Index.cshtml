@@ -6,24 +6,17 @@
     ViewData["title"] = "Home Page | ShopeeFood.vn | Administrator";
 }
 
-<div class="home-stores-section row p-3" vendor-id="@vendorId">
-    <div class="menu col-auto">
-        <div class="see-stores-list">
-            Danh sách cửa hàng
-        </div>
-        <div class="add-store">
-            Tạo cửa hàng mới
-        </div>
-    </div>
-    
-    <div class="main-content col-auto">
+<div class="home-stores-section p-3" vendor-id="@vendorId">
+    <div class="main-content">
         @if (Model.Stores is not null)
         {
             var stores = Model.Stores;
+            
+            <h4 class="text-center mt-1">Danh sách cửa hàng</h4>
 
             foreach (var store in stores)
             {
-                <div class="store-item ms-3 mb-2 row">
+                <div class="store-item ms-2 me-2 mb-2 row">
                     <a class="" store-id="@store.Id" asp-controller="Store" asp-action="Details" asp-route-storeId="@store.Id">
                         <div class="opentime-status">
                             <span class="status @(currentTime >= store.OpeningHour && currentTime <= store.ClosingHour ? "online" : "offline")"></span>
@@ -40,7 +33,7 @@
                         <div class="store-info">
                             <div class="basic-info">
                                 <h4><img class="" alt="" src="~/images/partner2x.png" title="Đây là 1 trong những Merchants được đánh giá cao trong ShopeeFood"/> @store.Name</h4>
-                                <div>Số @store.StreetName, @store.Ward!.FullName, @store.Ward.District!.FullName, @store.Ward.District.Province!.Name</div>
+                                <div>@store.StreetName, @store.Ward!.FullName, @store.Ward.District!.FullName, @store.Ward.District.Province!.Name</div>
                             </div>
                         </div>
                     </a>
@@ -52,10 +45,8 @@
 
 @section Styles {
     <link rel="stylesheet" href="~/css/home.css" asp-append-version="true"/>
-    <link rel="stylesheet" href="~/css/store.css" asp-append-version="true"/>
 }
 
 @section Scripts {
     <script src="~/js/home.js" asp-append-version="true"></script>
-    <script src="~/js/store.js" asp-append-version="true"></script>
 }

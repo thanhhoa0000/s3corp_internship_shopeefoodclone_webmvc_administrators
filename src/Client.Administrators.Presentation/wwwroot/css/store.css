@@ -1,6 +1,66 @@
-.validation-message {
-    font-family: "Noto Sans", Arial, sans-serif;
-    font-size: 12px;
-    font-weight: 700;
-    display: none;
+.store-details-section{
+    background-color: #FFFFFF;
+    border-radius: 6px;
+    margin-top: 50px;
+    margin-bottom: 50px;
 }
+
+.store-name {
+    font-size: 24px;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.store-address {
+    font-size: 16px;
+    font-weight: 400;
+    font-style: italic;
+}
+
+.store-schedule {
+    font-size: 16px;
+    font-weight: 400;
+}
+
+.opening-hours span{
+    color: #329900;
+    font-weight: 700;
+    margin-left: 25px;
+}
+
+.closing-hours span{
+    color: #bd0734;
+    font-weight: 700;
+    margin-left: 9px;
+}
+
+.last-updated {
+    font-size: 16px;
+    font-weight: 400;
+}
+
+.last-updated span {
+    color: #200F6CFF;
+    font-weight: 700;
+}
+
+.store-img {
+    width: 240px;
+    height: 180px;
+    border-radius: 6px;
+    border: 1px solid #d7d7d7;
+    padding: 0;
+}
+
+.store-img img {
+    width: 100%;
+    height: 100%;
+    border-radius: 6px;
+}
+
+.buttons-section a {
+    font-weight: 700;
+    height: 35px;
+    width: 150px;
+}
+

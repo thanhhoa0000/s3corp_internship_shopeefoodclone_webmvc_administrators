@@ -2,6 +2,7 @@
 
 :root {
     --primary-color: #EE4D2D;
+    --primary-red: #9f2a2a;
     --primary-background-color: #F2F2F2;
     --primary-font-family: "Noto Sans", Arial, sans-serif;
 }
@@ -145,4 +146,11 @@ footer .container {
 
 .opentime-status .offline-title {
     color: #8e938c;
+}
+
+.validate-message {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--primary-red);
+    margin: 5px;
 }

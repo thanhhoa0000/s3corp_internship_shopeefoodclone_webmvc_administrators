@@ -42,4 +42,8 @@
       <Folder Include="wwwroot\js\" />
     </ItemGroup>
 
+    <ItemGroup>
+      <TypeScriptCompile Remove="wwwroot\ts\store-details.ts" />
+    </ItemGroup>
+
 </Project>

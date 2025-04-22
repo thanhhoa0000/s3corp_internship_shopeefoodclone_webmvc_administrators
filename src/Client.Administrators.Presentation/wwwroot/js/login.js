@@ -12,10 +12,30 @@ $(function () {
         }
     }
 });
-$(function () {
-    // $.validator.unobtrusive.parse('form');
-    $('form input').on('blur', function () {
-        $(this).valid();
+$('form button').on('click', function (event) {
+    event.preventDefault();
+    let validateField = $('input');
+    validateField.each(function () {
+        let $field = $(this);
+        let name = $field.closest('.form-group').find('label')
+            .clone().children().remove().end().text().trim();
+        let span = $field.closest('.form-group').find('.validate-message');
+        formFieldValidate(name, $field, span, [Rule.IsRequired], 0, Number.MAX_SAFE_INTEGER);
     });
+    if ($('.validate-message:visible').length === 0) {
+        $(this).closest('form')[0].submit();
+    }
+});
+$(document).on('blur', 'input', function () {
+    let name = $(this).closest('.form-group').find('label')
+        .clone().children().remove().end().text().trim();
+    let span = $(this).closest('.form-group').find('.validate-message');
+    formFieldValidate(name, $(this), span, [Rule.IsRequired], 0, Number.MAX_SAFE_INTEGER);
+});
+$(document).on('focus', 'input', function () {
+    let span = $(this).closest('.form-group').find('span');
+    $(this).css('border-color', '');
+    span.text('');
+    span.hide();
 });
 //# sourceMappingURL=login.js.map

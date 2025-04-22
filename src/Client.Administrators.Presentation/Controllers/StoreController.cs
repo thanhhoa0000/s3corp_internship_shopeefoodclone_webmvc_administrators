@@ -15,49 +15,15 @@ public class StoreController : Controller
         _productService = productService;
         _logger = logger;
     }
-
+    
     [HttpGet]
-    public IActionResult Create()
+    public async Task<IActionResult> Details(Guid storeId)
     {
         if (!User.Identity!.IsAuthenticated)
         {
             return RedirectToAction("Login", "Account");
         }
-
-        return View(new CreateStoreViewModel());
-    }
-
-    [HttpPost]
-    [ValidateAntiForgeryToken]
-    public async Task<IActionResult> Create(CreateStoreViewModel model)
-    {
-        var request = new CreateStoreRequest(
-            new StoreDto
-            {
-                UserId = model.VendorId,
-                Name = model.Name,
-                StreetName = model.StreetName,
-                OpeningHour = model.OpeningHour,
-                ClosingHour = model.ClosingHour
-            },
-            model.SubCategoryIds,
-            model.WardCode!);
-
-        Response? createStoreResponse = await _storeService.CreateStoreAsync(request);
-
-        if (!createStoreResponse!.IsSuccessful)
-
-            TempData["error"] = "Đã xảy ra lỗi khi tạo cửa hàng!";
-
-        else
-            TempData["success"] = "Tạo cửa hàng thành công!";
-
-        return RedirectToAction("Index", "Home");
-    }
-    
-    [HttpGet]
-    public async Task<IActionResult> Details(Guid storeId)
-    {
+        
         var store = new StoreDto();
         var products = new List<ProductDto>();
         var menus = new List<MenuDto>();
