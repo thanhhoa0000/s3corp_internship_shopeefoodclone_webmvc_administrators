@@ -41,6 +41,8 @@ $(document).on('blur', '.validate-field', function () {
 
 $('form button').on('click', function(event) {
     event.preventDefault();
+
+    let isValid = true;
     
     let validateField = $('.validate-field');
 
@@ -72,11 +74,19 @@ $('form button').on('click', function(event) {
         }
 
         formFieldValidate(name, $field, span, rules, minLength, maxLength);
+
+        if (span.text().trim() !== '') {
+            isValid = false;
+        }
     });
 
-    const allValid = $('.validate-message').toArray().every(span => $(span).text().trim() === '');
+    const fileInput = $('input[type="file"]')[0] as HTMLInputElement;
+    if (!fileInput.files?.length) {
+        isValid = false;
+        $(fileInput).closest('.form-group')!.find('.validate-message').text('Image is required.');
+    }
 
-    if (allValid) {
+    if (isValid) {
         $(this).closest('form')[0].submit();
     }
 });

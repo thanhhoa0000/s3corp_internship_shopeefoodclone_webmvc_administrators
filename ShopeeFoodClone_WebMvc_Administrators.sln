@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.13.35818.85 d17.13
+VisualStudioVersion = 17.13.35818.85
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Source", "Source", "{896C2AE5-4753-48B3-9BA9-36B668B5D714}"
 	ProjectSection(SolutionItems) = preProject
@@ -19,8 +19,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Docker", "Docker", "{F927176A-F470-4F61-B0BF-E8027279D6A7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Client.Administrators.Application", "src\Client.Administrators.Application\Client.Administrators.Application.csproj", "{593723CF-D508-4C1D-AA4A-57EC159E901D}"
-EndProject
 Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{81DDED9D-158B-E303-5F62-77A2896D2A5A}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Client.Administrators.Presentation", "src\Client.Administrators.Presentation\Client.Administrators.Presentation.csproj", "{A9341ECF-C133-41CA-AF31-99A3BE0D08E5}"
@@ -31,10 +29,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{593723CF-D508-4C1D-AA4A-57EC159E901D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{593723CF-D508-4C1D-AA4A-57EC159E901D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{593723CF-D508-4C1D-AA4A-57EC159E901D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{593723CF-D508-4C1D-AA4A-57EC159E901D}.Release|Any CPU.Build.0 = Release|Any CPU
 		{81DDED9D-158B-E303-5F62-77A2896D2A5A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{81DDED9D-158B-E303-5F62-77A2896D2A5A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{81DDED9D-158B-E303-5F62-77A2896D2A5A}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -48,7 +42,6 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{593723CF-D508-4C1D-AA4A-57EC159E901D} = {896C2AE5-4753-48B3-9BA9-36B668B5D714}
 		{81DDED9D-158B-E303-5F62-77A2896D2A5A} = {F927176A-F470-4F61-B0BF-E8027279D6A7}
 		{A9341ECF-C133-41CA-AF31-99A3BE0D08E5} = {896C2AE5-4753-48B3-9BA9-36B668B5D714}
 	EndGlobalSection

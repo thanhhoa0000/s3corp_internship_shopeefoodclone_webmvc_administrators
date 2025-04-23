@@ -30,8 +30,8 @@
                     <div class="opening-hours">Giờ mở cửa:<span class="">@store.OpeningHour.ToString("hh:mm tt")</span></div>
                     <div class="closing-hours">Giờ đóng cửa:<span class="">@store.ClosingHour.ToString("hh:mm tt")</span></div>
                 </div>
-                <div class="last-update">
-                    @(store.LastUpdatedAt != null ? $"Cập nhật lần cuối:<span class=\"ms-1\">{store.LastUpdatedAt:dd-MM-yyyy hh:mm tt}</span>" : "")
+                <div class="last-updated">
+                    @Html.Raw(store.LastUpdatedAt != null ? $"Cập nhật lần cuối:<span class=\"ms-1\">{store.LastUpdatedAt:dd-MM-yyyy hh:mm tt}</span>" : "")
                 </div>
 
             </div>
