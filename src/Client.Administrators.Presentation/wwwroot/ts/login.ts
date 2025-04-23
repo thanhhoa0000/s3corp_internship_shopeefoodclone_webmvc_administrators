@@ -43,8 +43,8 @@ $(document).on('blur', 'input', function () {
 });
 
 $(document).on('focus', 'input', function () {
-    let span = $(this).closest('.form-group').find('span');
-    $(this).css('border-color', '');
+    let span = $('.validate-message');
+    $('input').css('border-color', '');
     span.text('');
-    span.hide();
+    span.hide().attr("hidden", "true");
 });

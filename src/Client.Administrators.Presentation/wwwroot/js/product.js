@@ -35,6 +35,7 @@ $(document).on('blur', '.validate-field', function () {
 });
 $('form button').on('click', function (event) {
     event.preventDefault();
+    let isValid = true;
     let validateField = $('.validate-field');
     validateField.each(function () {
         let minLength = 0;
@@ -59,16 +60,31 @@ $('form button').on('click', function (event) {
             rules = [Rule.IsRequired];
         }
         formFieldValidate(name, $field, span, rules, minLength, maxLength);
+        if (span.text().trim() !== '') {
+            isValid = false;
+        }
     });
-    const allValid = $('.validate-message').toArray().every(span => $(span).text().trim() === '');
-    if (allValid) {
+    const fileInput = $('input[type="file"]')[0];
+    if (!fileInput.files?.length) {
+        isValid = false;
+        $(fileInput).closest('.form-group').find('.validate-message').text('Image is required.');
+    }
+    if (isValid) {
         $(this).closest('form')[0].submit();
     }
 });
 $(document).on('focus', '.validate-field', function () {
-    let span = $(this).closest('.form-group').find('span');
-    $(this).css('border-color', '');
+    let span = $('.validate-message');
+    $('.validate-field').css('border-color', '');
     span.text('');
-    span.hide();
+    span.hide().attr("hidden", "true");
+});
+$(document).on("keypress", '#Price', function (event) {
+    if (!/[0-9]/.test(event.key)) {
+        event.preventDefault();
+    }
+});
+$(document).on("input", '#Price', function () {
+    this.value = this.value.replace(/[^0-9]/g, '');
 });
 //# sourceMappingURL=product.js.map
