@@ -4,7 +4,7 @@
     ViewData["title"] = $"Create product | ShopeeFood.vn | Administrator";
 }
 
-<form class="p-3" asp-controller="Product" asp-action="Create" method="post">
+<form class="p-3" asp-controller="Product" asp-action="Create" method="post" enctype="multipart/form-data">
     @Html.AntiForgeryToken()
     <h4 class="text-uppercase">Thông tin sản phẩm</h4>
     <input type="hidden" asp-for="StoreId" value="@Model.StoreId"/>
