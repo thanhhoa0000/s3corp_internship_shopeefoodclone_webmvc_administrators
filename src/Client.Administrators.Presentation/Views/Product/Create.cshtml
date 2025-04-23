@@ -4,35 +4,42 @@
     ViewData["title"] = $"Create product | ShopeeFood.vn | Administrator";
 }
 
-<form asp-controller="Product" asp-action="Create" method="post">
+<form class="p-3" asp-controller="Product" asp-action="Create" method="post" enctype="multipart/form-data">
     @Html.AntiForgeryToken()
+    <h4 class="text-uppercase">Thông tin sản phẩm</h4>
     <input type="hidden" asp-for="StoreId" value="@Model.StoreId"/>
 
-    <div class="mb-3">
+    <div class="form-group mb-3">
         <label class="form-label">Tên sản phẩm<span class="ms-1 text-danger">*</span></label>
-        <input asp-for="Name" type="text" class="form-control" placeholder="Tên sản phẩm"/>
-        <span asp-validation-for="Name" class="validation-message text-danger"/>
+        <input asp-for="Name" type="text" class="form-control validate-field" placeholder="Tên sản phẩm"/>
+        <span class="validate-message name"></span>
     </div>
     
-    <div class="mb-3">
+    <div class="form-group mb-3">
         <label class="form-label">Mô tả sản phẩm<span class="ms-1 text-danger">*</span></label>
-        <textarea asp-for="Description" type="text" class="form-control" placeholder="Mô tả sản phẩm..."></textarea>
-        <span asp-validation-for="Description" class="validation-message text-danger"/>
+        <textarea asp-for="Description" type="text" class="form-control validate-field" placeholder="Mô tả sản phẩm..."></textarea>
+        <span class="validate-message description"></span>
     </div>
     
-    <div class="mb-3">
-        <label class="form-label">Giá<span class="ms-1 text-danger">*</span></label>
-        <textarea asp-for="Price" type="text" class="form-control" placeholder="Giá tiền"></textarea>
-        <span asp-validation-for="Price" class="validation-message text-danger"/>
+    <div class="form-group mb-3">
+        <label class="form-label">Giá tiền<span class="ms-1 text-danger">*</span></label>
+        <input asp-for="Price" type="text" class="form-control validate-field" placeholder="Đơn vị: VND" />
+        <span class="validate-message price"></span>
+    </div>
+    
+    <div class="form-group mb-3">
+        <label class="form-label">Hình ảnh (.jpg, .jpeg, .png)<span class="ms-1 text-danger">*</span></label>
+        <input class="form-control" asp-for="CoverImage" id="product-img" type="file" accept=".jpg,.jpeg,.png">
+        <span class="validate-message image"></span>
     </div>
 
     <button class="btn btn-orange d-flex align-items-center justify-content-end ms-auto" type="submit" onclick="">Tạo sản phẩm</button>
 </form>
 
 @section Styles {
-    <link rel="stylesheet" href="~/css/product-create.css" asp-append-version="true"/>
+    <link rel="stylesheet" href="~/css/product.css" asp-append-version="true"/>
 }
 
 @section Scripts {
-    <script src="~/js/product-create.js" asp-append-version="true"></script>
+    <script src="~/js/product.js" asp-append-version="true"></script>
 }

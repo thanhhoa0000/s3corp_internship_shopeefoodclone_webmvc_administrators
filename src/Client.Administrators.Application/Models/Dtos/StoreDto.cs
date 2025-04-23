@@ -19,7 +19,12 @@ public class StoreDto
     public double Rating { get; set; } = 0.0;
     public int Sold { get; set; } = 0;
     public bool IsPromoted { get; set; } = false;
+    public StoreState State { get; set; } = StoreState.Active;
+    public Guid ConcurrencyStamp  { get; set; }
+    public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
+    public DateTime? LastUpdatedAt { get; set; }
     
     public WardDto? Ward { get; set; }
     public ICollection<SubCategoryDto> SubCategories { get; set; } = new List<SubCategoryDto>();
+    public ICollection<CollectionDto> Collections { get; set; } = new List<CollectionDto>();
 }

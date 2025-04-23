@@ -7,7 +7,12 @@ body {
     margin-bottom: 190px;
     border-radius: 6px;
     background-color: #FFFFFF;
-    height: 600px;
+}
+
+.home-stores-section h4 {
+    font-size: 24px;
+    font-weight: 700;
+    text-transform: uppercase;
 }
 
 .store-item a {
@@ -54,30 +59,4 @@ body {
     padding-right: 10px;
     border-radius: 6px;
     transition: box-shadow 0.3s ease-in-out, border-color 0.3s ease-in-out;
-}
-
-.menu div {
-    border-radius: 4px;
-    font-size: 20px;
-    font-weight: 400;
-    transition: box-shadow 0.3s ease-in-out, border-color 0.3s ease-in-out;
-    cursor: pointer;
-    text-transform: uppercase;
-    padding: 15px;
-    margin-bottom: 10px;
-}
-
-.menu div:hover {
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-    border-color: #b5b5b5;
-}
-
-.menu div.active {
-    background-color: #959595;
-    color: white;
-}
-
-.main-content {
-    width: 1010px;
-    height: 810px !important;
 }
