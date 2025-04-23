@@ -46,8 +46,10 @@ public class ProductController : Controller
             Response? createProductResponse = await _productService.CreateProductAsync(request);
             if (createProductResponse!.IsSuccessful)
             {
-                var uploadFolder = Path.Combine(_imagesPath, model.StoreId.ToString(), "products",
-                    request.Id.ToString());
+                var uploadFolder = Path.Combine(
+                    _imagesPath,
+                    "stores", model.StoreId.ToString(), 
+                    "products", request.Id.ToString());
 
                 if (!Directory.Exists(uploadFolder)) 
                     Directory.CreateDirectory(uploadFolder);

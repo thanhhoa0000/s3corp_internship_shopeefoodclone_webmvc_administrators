@@ -46,4 +46,43 @@
       <TypeScriptCompile Remove="wwwroot\ts\store-details.ts" />
     </ItemGroup>
 
+    <ItemGroup>
+      <_ContentIncludedByDefault Remove="wwwroot\images\partner2x.png" />
+      <_ContentIncludedByDefault Remove="wwwroot\images\shopeefoodvn.png" />
+      <_ContentIncludedByDefault Remove="wwwroot\images\stores\0181a469-b949-448a-8725-8dd1fc8f988a\cover-img.jpg" />
+      <_ContentIncludedByDefault Remove="wwwroot\images\stores\1b3537ef-a979-4e5c-a819-2d5987f42d68\cover-img.jpg" />
+      <_ContentIncludedByDefault Remove="wwwroot\images\stores\2416847f-944e-47f7-8679-46010e33c593\cover-img.jpg" />
+      <_ContentIncludedByDefault Remove="wwwroot\images\stores\270824a4-b3b4-4382-aa81-35cee859848d\cover-img.jpg" />
+      <_ContentIncludedByDefault Remove="wwwroot\images\stores\3e7d2b56-371b-406c-9c76-faa4b7006a1a\cover-img.jpg" />
+      <_ContentIncludedByDefault Remove="wwwroot\images\stores\3e7d2b56-371b-406c-9c76-faa4b7006a1a\products\118e43ae-81b7-4013-b7ec-c5f7b9e747b0\cover-img.jpg" />
+      <_ContentIncludedByDefault Remove="wwwroot\images\stores\3e7d2b56-371b-406c-9c76-faa4b7006a1a\products\64140c4c-1d9f-47b7-a1f2-6ca306631d3f\cover-img.jpg" />
+      <_ContentIncludedByDefault Remove="wwwroot\images\stores\3e7d2b56-371b-406c-9c76-faa4b7006a1a\products\68295306-0bdd-44d8-b1b9-17590cfd86f1\cover-img.jpg" />
+      <_ContentIncludedByDefault Remove="wwwroot\images\stores\3e7d2b56-371b-406c-9c76-faa4b7006a1a\products\7139b605-57e5-4474-95d3-f8db0ef90fb8\cover-img.jpg" />
+      <_ContentIncludedByDefault Remove="wwwroot\images\stores\3e7d2b56-371b-406c-9c76-faa4b7006a1a\products\73c4dc76-0f35-4508-8c7d-31cfea16d437\cover-img.jpg" />
+      <_ContentIncludedByDefault Remove="wwwroot\images\stores\3e7d2b56-371b-406c-9c76-faa4b7006a1a\products\8040f001-ee6e-4b5e-8bed-e1670e984f8d\cover-img.jpg" />
+      <_ContentIncludedByDefault Remove="wwwroot\images\stores\3e7d2b56-371b-406c-9c76-faa4b7006a1a\products\98c82a05-f06a-430f-9ac9-64e1afbee619\cover-img.jpg" />
+      <_ContentIncludedByDefault Remove="wwwroot\images\stores\3e7d2b56-371b-406c-9c76-faa4b7006a1a\products\a18eb11b-18b4-4b30-9660-3141ac8f5bc6\cover-img.jpg" />
+      <_ContentIncludedByDefault Remove="wwwroot\images\stores\3e7d2b56-371b-406c-9c76-faa4b7006a1a\products\a80bd1ab-f4cc-4c8e-bc5d-5510b702b8c6\cover-img.jpg" />
+      <_ContentIncludedByDefault Remove="wwwroot\images\stores\3e7d2b56-371b-406c-9c76-faa4b7006a1a\products\bce4fcca-e0be-47d1-8782-cf62ca49cd05\cover-img.jpg" />
+      <_ContentIncludedByDefault Remove="wwwroot\images\stores\3e7d2b56-371b-406c-9c76-faa4b7006a1a\products\d487a8c4-e410-49a5-b808-b3f2e7558eb1\cover-img.jpg" />
+      <_ContentIncludedByDefault Remove="wwwroot\images\stores\3e7d2b56-371b-406c-9c76-faa4b7006a1a\products\dc795c3b-db5f-46b9-bb6b-f2dd2bceea5d\cover-img.jpg" />
+      <_ContentIncludedByDefault Remove="wwwroot\images\stores\45b4f2f0-316d-4bf0-b207-a698ddec9617\cover-img.jpg" />
+      <_ContentIncludedByDefault Remove="wwwroot\images\stores\628c1f23-8fc8-40e2-8712-2dbeca4f2e50\cover-img.jpg" />
+      <_ContentIncludedByDefault Remove="wwwroot\images\stores\70c3de7e-daa2-4878-8032-188c8b0b6c4f\cover-img.jpg" />
+      <_ContentIncludedByDefault Remove="wwwroot\images\stores\778c5c5e-cae0-40ca-b0b4-9521c88b5682\cover-img.jpg" />
+      <_ContentIncludedByDefault Remove="wwwroot\images\stores\7a0011ed-b36e-4f71-9aab-1aa90f84b577\cover-img.jpg" />
+      <_ContentIncludedByDefault Remove="wwwroot\images\stores\7d659c05-1b4c-483f-a681-072045b3b213\cover-img.jpg" />
+      <_ContentIncludedByDefault Remove="wwwroot\images\stores\8e34c4b3-f236-4bd9-8cd7-cdc11d0854d2\cover-img.jpg" />
+      <_ContentIncludedByDefault Remove="wwwroot\images\stores\906bf960-417d-4697-9bbb-5d351e455bfe\cover-img.jpg" />
+      <_ContentIncludedByDefault Remove="wwwroot\images\stores\906bf960-417d-4697-9bbb-5d351e455bfe\products\2f5dbe05-3b35-4b1f-9e37-9c46f2cb473c\cover-img.jpg" />
+      <_ContentIncludedByDefault Remove="wwwroot\images\stores\906bf960-417d-4697-9bbb-5d351e455bfe\products\332fc7da-b0be-4533-bf67-2909020ff689\cover-img.jpg" />
+      <_ContentIncludedByDefault Remove="wwwroot\images\stores\b30bf4f2-54a0-415d-9308-6dabb7777f02\cover-img.jpg" />
+      <_ContentIncludedByDefault Remove="wwwroot\images\stores\cac814a3-21fb-40b2-8ae9-7afa7f0157eb\cover-img.jpg" />
+      <_ContentIncludedByDefault Remove="wwwroot\images\stores\d0bbc400-e3ce-4f56-a556-082859cc086b\cover-img.jpg" />
+      <_ContentIncludedByDefault Remove="wwwroot\images\stores\default-store-cover-img.jpg" />
+      <_ContentIncludedByDefault Remove="wwwroot\images\stores\edff10fa-3371-4752-8a19-87e2396c761f\cover-img.jpg" />
+      <_ContentIncludedByDefault Remove="wwwroot\images\stores\ee4f9808-49c6-4b9f-be9f-b5140b42f58a\cover-img.jpg" />
+      <_ContentIncludedByDefault Remove="wwwroot\images\stores\product-img.png" />
+    </ItemGroup>
+
 </Project>

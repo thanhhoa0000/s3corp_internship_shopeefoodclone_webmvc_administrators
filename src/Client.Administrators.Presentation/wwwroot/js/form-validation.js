@@ -7,7 +7,7 @@ function formFieldValidate(name, inputField, errorMessageElement, rules, minLeng
         if (errorMessage) {
             inputField.css('border-color', primaryRed);
             errorMessageElement.text(errorMessage);
-            errorMessageElement.show();
+            errorMessageElement.removeAttr("hidden").show();
             return;
         }
     });

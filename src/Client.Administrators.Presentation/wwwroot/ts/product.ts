@@ -92,8 +92,18 @@ $('form button').on('click', function(event) {
 });
 
 $(document).on('focus', '.validate-field', function () {
-    let span = $(this).closest('.form-group').find('span');
-    $(this).css('border-color', '');
+    let span = $('.validate-message');
+    $('.validate-field').css('border-color', '');
     span.text('');
-    span.hide();
+    span.hide().attr("hidden", "true");
+});
+
+$(document).on("keypress", '#Price', function (event) {
+    if (!/[0-9]/.test(event.key)) {
+        event.preventDefault();
+    }
+});
+
+$(document).on("input", '#Price', function () {
+    this.value = this.value.replace(/[^0-9]/g, '');
 });
