@@ -57,7 +57,7 @@ public class ProductController : Controller
                 var fileName = "cover-img.jpg";
                 var filePath = Path.Combine(uploadFolder, fileName);
 
-                _logger.LogInformation($"Customers image path: {filePath}");
+                _logger.LogInformation($"Image path: {filePath}");
 
                 using var fileStream = new FileStream(filePath, FileMode.Create);
                 await model.CoverImage!.CopyToAsync(fileStream);
@@ -169,7 +169,7 @@ public class ProductController : Controller
                 var filePath = Path.Combine(_imagesPath,
                     model.CoverImagePath!.TrimStart(Path.DirectorySeparatorChar, Path.AltDirectorySeparatorChar));
 
-                _logger.LogInformation($"Customers image path: {filePath}");
+                _logger.LogInformation($"Image path: {filePath}");
 
                 using var fileStream = new FileStream(filePath, FileMode.Create);
                 await model.CoverImage!.CopyToAsync(fileStream);

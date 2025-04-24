@@ -102,7 +102,8 @@ $('form > button').on('click', function (event) {
             $(fileInput).closest('.form-group')!.find('.validate-message').text('Image is required.');
         }
     }
-
+    
+    console.log(isValid);
 
     if (isValid) {
         $(this).closest('form')[0].submit();

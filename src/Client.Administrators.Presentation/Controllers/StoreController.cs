@@ -117,9 +117,29 @@ public class StoreController : Controller
             OpeningHour = model.OpeningHour,
             ClosingHour = model.ClosingHour,
         };
+
+        Response? vendorUpdateStoreResponse = await _storeService.VendorUpdateStoreAsync(request);
+
+        if (vendorUpdateStoreResponse!.IsSuccessful)
+        {
+            if (model.CoverImage is not null)
+            {
+                var filePath = Path.Combine(_imagesPath,
+                    model.CoverImagePath!.TrimStart(Path.DirectorySeparatorChar, Path.AltDirectorySeparatorChar));
+
+                _logger.LogInformation($"Image path: {filePath}");
+
+                using var fileStream = new FileStream(filePath, FileMode.Create);
+                await model.CoverImage!.CopyToAsync(fileStream);
+            }
+
+            TempData["success"] = "Cập nhật thông tin cửa hàng thành công";
+
+            return RedirectToAction("Details", "Store", new { storeId = model.StoreId });
+        }
+
+        TempData["error"] = "Đã xảy ra lỗi";
         
-        Response? vendorUpdateStoreResponse = await _storeService.
-        
-        return RedirectToAction("Details", "Store", new { storeId = model.StoreId });
+        return View(model);
     }
 }

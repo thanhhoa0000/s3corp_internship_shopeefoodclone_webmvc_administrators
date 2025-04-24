@@ -81,6 +81,7 @@ $('form > button').on('click', function (event) {
             $(fileInput).closest('.form-group').find('.validate-message').text('Image is required.');
         }
     }
+    console.log(isValid);
     if (isValid) {
         $(this).closest('form')[0].submit();
     }
@@ -220,7 +221,7 @@ function getWards(district) {
             dropdown.empty();
             let wardsList = response.body.sort();
             wardsList.forEach(function (ward) {
-                let wardItem = `<li class="update-store-ward-item"><a class="dropdown-item" ward-code="${ward.code}" district-code="${district}">${ward.name.split(/\s+/).length === 1 ? "Phường" + ward.name : ward.name}</a></li>`;
+                let wardItem = `<li class="update-store-ward-item"><a class="dropdown-item" ward-code="${ward.code}" district-code="${district}">${ward.name.split(/\s+/).length === 1 ? "Phường " + ward.name : ward.name}</a></li>`;
                 dropdown.append(wardItem);
             });
             dropdown.on('click', '.update-store-ward-item', function () {

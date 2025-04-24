@@ -70,7 +70,7 @@
         </div>
         
         <div class="col-auto">
-            <input id="detail-address" class="form-control validate-field" type="text" asp-for="StreetName" placeholder="Tên toà nhà/Số nhà/Tên đường..."/>
+            <input id="detail-address" class="form-control" type="text" asp-for="StreetName" placeholder="Tên toà nhà/Số nhà/Tên đường..."/>
         </div>
         
         <input type="hidden" asp-for="WardCode"/>
@@ -89,7 +89,7 @@
         <span class="validate-message closing-hours" hidden></span>
     </div>
     
-    <button class="btn btn-success d-flex align-items-center justify-content-end ms-auto" type="submit" onclick="">Cập nhật cửa hàng</button>
+    <button class="update-store-button btn btn-success d-flex align-items-center justify-content-end ms-auto" type="submit" onclick="">Cập nhật cửa hàng</button>
 </form>
 
 @section Styles {
