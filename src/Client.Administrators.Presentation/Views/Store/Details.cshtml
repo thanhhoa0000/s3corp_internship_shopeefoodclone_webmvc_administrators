@@ -3,6 +3,7 @@
     // var vendorId = User.FindFirstValue(ClaimTypes.NameIdentifier);
     var store = Model.Store;
     var products = Model.Products;
+    var currentTime = DateTime.UtcNow;
 
     ViewData["title"] = $"{store!.Name ?? ""} | ShopeeFood.vn | Administrator";
 }
@@ -33,14 +34,36 @@
                     <div class="closing-hours">Giờ đóng cửa:<span
                             class="">@store.ClosingHour.ToString("hh:mm tt")</span></div>
                 </div>
-                <div class="last-updated">
-                    @Html.Raw(store.LastUpdatedAt != null ? $"Cập nhật lần cuối:<span class=\"ms-1\">{store.LastUpdatedAt:dd-MM-yyyy hh:mm tt}</span>" : "")
-                </div>
+                @if (store.LastUpdatedAt is not null)
+                {
+                    <div class="last-updated">
+                        Cập nhật lần cuối:
+                        @if ((currentTime - store.LastUpdatedAt.Value) < TimeSpan.FromMinutes(1))
+                        {
+                            <span class="ms-1">Vừa xong</span>
+                        }
+                        else
+                        {
+                            <span class="ms-1">
+                                @((currentTime - store.LastUpdatedAt.Value).Humanize(
+                                    precision: 1,
+                                    culture: new CultureInfo("vi"),
+                                    maxUnit: TimeUnit.Day,
+                                    minUnit: TimeUnit.Minute
+                                )) trước
+                            </span>
+                        }
+                    </div>
+                }
 
             </div>
         </div>
 
         <div class="buttons-section d-flex flex-column align-items-end ms-auto mb-5">
+            <a type="button" class="btn btn-success d-flex align-items-center justify-content-center mb-2"
+               asp-controller="Store" asp-action="VendorUpdate" asp-route-storeId="@storeId">
+                Chỉnh sửa
+            </a>
             <a type="button" class="btn btn-orange d-flex align-items-center justify-content-center mb-2"
                asp-controller="Product" asp-action="Create" asp-route-storeId="@storeId">
                 Thêm sản phẩm
@@ -69,12 +92,33 @@
                                     src="@Url.Content($"~/images{product.CoverImagePath}")"
                                     onerror="
                                     this.onerror = null; 
-                                    this.src = '/images/stores/default-store-cover-img.jpg'"/>
+                                    this.src = '/images/stores/product-img.jpg'"/>
                             </div>
 
                             <div class="product-info col-auto">
                                 <h4 class="product-name">@product.Name</h4>
                                 <div class="product-description">@product.Description</div>
+                                @if (product.LastUpdatedAt is not null)
+                                {
+                                    <div class="product-last-updated">
+                                        Cập nhật lần cuối:
+                                        @if ((currentTime - product.LastUpdatedAt.Value) < TimeSpan.FromMinutes(1))
+                                        {
+                                            <span class="ms-1">Vừa xong</span>
+                                        }
+                                        else
+                                        {
+                                            <span class="ms-1">
+                                                @((currentTime - product.LastUpdatedAt.Value).Humanize(
+                                                    precision: 1,
+                                                    culture: new CultureInfo("vi"),
+                                                    maxUnit: TimeUnit.Day,
+                                                    minUnit: TimeUnit.Minute
+                                                )) trước
+                                            </span>
+                                        }
+                                    </div>
+                                }
                             </div>
 
                             <div class="col-auto">
@@ -96,13 +140,19 @@
                                 </div>
 
                                 <div class="d-flex flex-column align-items-end">
-                                    <a class="btn-product-edit btn btn-outline-success d-flex justify-content-center align-items-center mb-2" style="height: 40px;">
+                                    <a 
+                                        class="btn-product-edit btn btn-outline-success d-flex justify-content-center align-items-center mb-2" 
+                                        asp-controller="Product" asp-action="VendorUpdate" asp-route-productId="@product.Id">
                                         Chỉnh sửa
                                     </a>
-                                    <a class="btn-product-edit btn btn-danger d-flex justify-content-center align-items-center" style="height: 40px;">
-                                        Xoá
-                                    </a>
 
+                                    <form asp-controller="Product" asp-action="VendorDelete" method="post"
+                                          onsubmit="return confirm('Bạn muốn xoá sản phẩm này?');">
+                                        <input type="hidden" name="productId" value="@product.Id" />
+                                        <button type="submit" class="btn-product-edit btn btn-danger d-flex justify-content-center align-items-center">
+                                            Xoá
+                                        </button>
+                                    </form>
                                 </div>
                             </div>
                         </div>

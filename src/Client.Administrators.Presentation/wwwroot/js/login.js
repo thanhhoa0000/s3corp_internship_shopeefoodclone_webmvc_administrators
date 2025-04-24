@@ -12,7 +12,7 @@ $(function () {
         }
     }
 });
-$('form button').on('click', function (event) {
+$('form > button').on('click', function (event) {
     event.preventDefault();
     let validateField = $('input');
     validateField.each(function () {

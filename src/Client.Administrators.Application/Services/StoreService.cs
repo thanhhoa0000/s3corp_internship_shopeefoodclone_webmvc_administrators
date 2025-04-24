@@ -37,4 +37,14 @@ public class StoreService : IStoreService
             Url = $"{ApiUrlProperties.ApiGatewayUrl}/stores",
         }, bearer: true);
     }
+
+    public async Task<Response?> VendorUpdateStoreAsync(VendorUpdateStoreRequest request)
+    {
+        return await _service.SendAsync(new Request()
+        {
+            ApiMethod = ApiMethod.Put,
+            Body = request,
+            Url = $"{ApiUrlProperties.ApiGatewayUrl}/stores/update-by-vendor",
+        }, bearer: true);
+    }
 }

@@ -1,0 +1,101 @@
+﻿@model UpdateStoreViewModel
+
+@{
+    ViewData["title"] = $"Update store | ShopeeFood.vn | Administrator";
+}
+
+<form class="p-5" asp-controller="Store" asp-action="VendorUpdate" method="post" enctype="multipart/form-data"
+      onsubmit="return confirm('Bạn muốn cập nhật cửa hàng này?');">
+    @Html.AntiForgeryToken()
+    <h4 class="text-uppercase">Cập nhật thông tin cửa hàng</h4>
+    <input type="hidden" asp-for="StoreId" value="@Model.StoreId"/>
+    <input type="hidden" asp-for="CoverImagePath" value="@Model.CoverImagePath"/>
+    <input type="hidden" asp-for="ConcurrencyStamp" value="@Model.ConcurrencyStamp"/>
+    <input type="hidden" id="hidden-district-code" value="@Model.DistrictCode"/>
+    <input type="hidden" id="hidden-province-code" value="@Model.ProvinceCode"/>
+    
+    <div class="update-store-img">
+        <img
+            class="mb-1"
+            alt=""
+            src="@Url.Content($"~/images{Model.CoverImagePath}")"
+            onerror="
+                                    this.onerror = null; 
+                                    this.src = '/images/stores/default-store-cover-img.jpg'"/>
+        
+        <button type="button" class="btn btn-outline-orange">Thay đổi ảnh</button>
+    </div>
+    
+    <div class="form-group mb-3 update-store-img-input" hidden>
+        <label class="form-label">Hình ảnh (.jpg, .jpeg, .png)<span class="ms-1 text-danger">*</span></label>
+        <input class="form-control" asp-for="CoverImage" id="product-img" type="file" accept=".jpg,.jpeg,.png">
+        <span class="validate-message image" hidden></span>
+    </div>
+    
+    <div class="form-group mb-3">
+        <label class="form-label">Tên cửa hàng<span class="ms-1 text-danger">*</span></label>
+        <input asp-for="Name" type="text" class="form-control validate-field" placeholder="Tên cửa hàng"/>
+        <span class="validate-message name" hidden></span>
+    </div>
+    
+    <div class="row store-address-section form-group">
+        <div class="dropdown col-auto p-0 me-3">
+            <button id="province-btn"
+                    class="btn dropdown-toggle d-flex align-items-center justify-content-start" type="button"
+                    data-bs-toggle="dropdown">
+                Tỉnh/Thành phố
+            </button>
+            <ul class="dropdown-menu" id="update-store-province-dropdown">
+
+            </ul>
+        </div>
+        <div class="dropdown col-auto p-0 me-3">
+            <button id="district-btn"
+                    class="btn dropdown-toggle d-flex align-items-center justify-content-start" type="button"
+                    data-bs-toggle="dropdown">
+                Quận/Huyện
+            </button>
+            <ul class="dropdown-menu" id="update-store-district-dropdown">
+
+            </ul>
+        </div>
+        <div class="dropdown col-auto p-0 me-3">
+            <button id="ward-btn" class="btn dropdown-toggle d-flex align-items-center justify-content-start"
+                    type="button" data-bs-toggle="dropdown">
+                Phường/Xã
+            </button>
+            <ul class="dropdown-menu" id="update-store-ward-dropdown">
+
+            </ul>
+        </div>
+        
+        <div class="col-auto">
+            <input id="detail-address" class="form-control validate-field" type="text" asp-for="StreetName" placeholder="Tên toà nhà/Số nhà/Tên đường..."/>
+        </div>
+        
+        <input type="hidden" asp-for="WardCode"/>
+        <span class="address-validation-message mt-1" hidden>Vui lòng chọn đầy đủ Tỉnh/Thành phố, Quận/Huyện, Phường/Xã và nhập địa chỉ chi tiết</span>
+    </div>
+    
+    <div class="form-group mb-3">
+        <label class="form-label">Giờ mở cửa<span class="ms-1 text-danger">*</span></label>
+        <input asp-for="OpeningHour" type="time" class="form-control validate-field"/>
+        <span class="validate-message opening-hours" hidden></span>
+    </div>
+    
+    <div class="form-group mb-3">
+        <label class="form-label">Giờ đóng cửa<span class="ms-1 text-danger">*</span></label>
+        <input asp-for="ClosingHour" type="time" class="form-control validate-field"/>
+        <span class="validate-message closing-hours" hidden></span>
+    </div>
+    
+    <button class="btn btn-success d-flex align-items-center justify-content-end ms-auto" type="submit" onclick="">Cập nhật cửa hàng</button>
+</form>
+
+@section Styles {
+    <link rel="stylesheet" href="~/css/store.css" asp-append-version="true"/>
+}
+
+@section Scripts {
+    <script src="~/js/store.js" asp-append-version="true"></script>
+}

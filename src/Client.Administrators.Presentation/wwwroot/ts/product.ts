@@ -39,7 +39,7 @@ $(document).on('blur', '.validate-field', function () {
     formFieldValidate(name, $(this), span, rules, minLength, maxLength);
 });
 
-$('form button').on('click', function(event) {
+$('form > button').on('click', function(event) {
     event.preventDefault();
 
     let isValid = true;
@@ -80,11 +80,14 @@ $('form button').on('click', function(event) {
         }
     });
 
-    const fileInput = $('input[type="file"]')[0] as HTMLInputElement;
-    if (!fileInput.files?.length) {
-        isValid = false;
-        $(fileInput).closest('.form-group')!.find('.validate-message').text('Image is required.');
+    if (window.location.pathname === '/Product/Create') {
+        const fileInput = $('input[type="file"]')[0] as HTMLInputElement;
+        if (!fileInput.files?.length) {
+            isValid = false;
+            $(fileInput).closest('.form-group')!.find('.validate-message').text('Image is required.');
+        }
     }
+
 
     if (isValid) {
         $(this).closest('form')[0].submit();
@@ -106,4 +109,9 @@ $(document).on("keypress", '#Price', function (event) {
 
 $(document).on("input", '#Price', function () {
     this.value = this.value.replace(/[^0-9]/g, '');
+});
+
+$('.product-img button').on('click', function () {
+   $('.product-img').hide().attr("hidden", "true");
+   $('.update-product-img').removeAttr("hidden").show();
 });
