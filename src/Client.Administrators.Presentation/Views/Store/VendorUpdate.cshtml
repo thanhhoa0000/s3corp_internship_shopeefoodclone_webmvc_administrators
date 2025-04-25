@@ -4,7 +4,7 @@
     ViewData["title"] = $"Update store | ShopeeFood.vn | Administrator";
 }
 
-<form class="p-5" asp-controller="Store" asp-action="VendorUpdate" method="post" enctype="multipart/form-data"
+<form class="update-store-form p-5" asp-controller="Store" asp-action="VendorUpdate" method="post" enctype="multipart/form-data"
       onsubmit="return confirm('Bạn muốn cập nhật cửa hàng này?');">
     @Html.AntiForgeryToken()
     <h4 class="text-uppercase">Cập nhật thông tin cửa hàng</h4>

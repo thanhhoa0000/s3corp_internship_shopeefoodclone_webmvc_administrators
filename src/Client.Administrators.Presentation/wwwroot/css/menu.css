@@ -1,0 +1,11 @@
+form {
+    background-color: white;
+    border-radius: 6px;
+    margin: 50px 0;
+}
+
+form h4 {
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 50px;
+}

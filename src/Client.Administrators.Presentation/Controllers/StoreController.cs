@@ -4,17 +4,20 @@ public class StoreController : Controller
 {
     private readonly IStoreService _storeService;
     private readonly IProductService _productService;
+    private readonly IMenuService _menuService;
     private readonly ILogger<StoreController> _logger;
     private readonly string _imagesPath;
 
     public StoreController(
         IStoreService storeService,
         IProductService productService,
+        IMenuService menuService,
         ILogger<StoreController> logger,
         IConfiguration configuration)
     {
         _storeService = storeService;
         _productService = productService;
+        _menuService = menuService;
         _logger = logger;
         _imagesPath = configuration.GetValue<string>("ImagesPath")!;
     }
@@ -49,7 +52,7 @@ public class StoreController : Controller
                 Convert.ToString(productsResponse.Body)!,
                 new JsonSerializerOptions { PropertyNameCaseInsensitive = true })!;
         
-        Response? menusResponse = await _productService.GetMenusAsync(new GetMenusRequest
+        Response? menusResponse = await _menuService.GetMenusByStoreIdAsync(new GetMenusRequest
         {
             StoreId = storeId
         });
@@ -99,6 +102,7 @@ public class StoreController : Controller
     }
 
     [HttpPost]
+    [ValidateAntiForgeryToken]
     public async Task<IActionResult> VendorUpdate(UpdateStoreViewModel model)
     {
         if (!User.Identity!.IsAuthenticated)

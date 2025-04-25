@@ -226,7 +226,7 @@ function getWards(district) {
             });
             dropdown.on('click', '.update-store-ward-item', function () {
                 let button = $('#ward-btn');
-                $('#WardCode').val($(this).attr('ward-code') || '');
+                $('#WardCode').val($(this).find('a').attr('ward-code') || '');
                 button.text(this.textContent);
             });
             document.dispatchEvent(new Event("wardLoaded"));

@@ -28,16 +28,6 @@ public class ProductService : IProductService
         }, bearer: true);
     }
 
-    public async Task<Response?> GetMenusAsync(GetMenusRequest request)
-    {
-        return await _service.SendAsync(new Request()
-        {
-            ApiMethod = ApiMethod.Post,
-            Body = request,
-            Url = $"{ApiUrlProperties.ApiGatewayUrl}/menus/get-from-store",
-        }, bearer: true);
-    }
-
     public async Task<Response?> CreateProductAsync(CreateProductRequest request)
     {
         return await _service.SendAsync(new Request()

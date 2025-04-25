@@ -9,6 +9,7 @@ public static partial class ServicesConfiguration
         services.AddScoped<IAccountService, AccountService>();
         services.AddScoped<IStoreService, StoreService>();
         services.AddScoped<IProductService, ProductService>();
+        services.AddScoped<IMenuService, MenuService>();
         
         return services;
     }

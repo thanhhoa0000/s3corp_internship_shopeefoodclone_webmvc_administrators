@@ -31,6 +31,7 @@ public class ProductController : Controller
     }
 
     [HttpPost]
+    [ValidateAntiForgeryToken]
     public async Task<IActionResult> Create(CreateProductViewModel model)
     {
         try
@@ -140,6 +141,7 @@ public class ProductController : Controller
     }
 
     [HttpPost]
+    [ValidateAntiForgeryToken]
     public async Task<IActionResult> VendorUpdate(UpdateProductViewModel model)
     {
         if (!User.Identity!.IsAuthenticated)

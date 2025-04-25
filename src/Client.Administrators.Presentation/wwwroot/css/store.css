@@ -153,13 +153,18 @@
     font-weight: 700;
 }
 
-form {
+.menu-title {
+    font-size: 18px !important;
+    font-weight: 400 !important;
+}
+
+.update-store-form {
     background-color: white;
     border-radius: 6px;
     margin: 50px 0;
 }
 
-form h4 {
+.update-store-form h4 {
     font-size: 24px;
     font-weight: 700;
     margin-bottom: 50px;
