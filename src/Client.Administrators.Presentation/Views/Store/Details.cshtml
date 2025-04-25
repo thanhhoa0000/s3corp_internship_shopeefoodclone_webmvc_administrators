@@ -86,16 +86,24 @@
                     {
                         <h4 class="text-uppercase">Danh sách sản phẩm đã có menu</h4>
 
-                        foreach (var menu in menus)
+                        foreach (var menu in menus.OrderBy(m => m.Products.Count == 0 ? 1 : 0))
                         {
                             if (menu.Products.Count == 0)
                             {
-                                <h4 class="menu-title text-uppercase">@menu.Title <span class="text-lowercase fst-italic">(chưa có sản phẩm)</span></h4>
+                                <div class="menu-title d-flex align-items-center">
+                                    <a class="btn btn-outline-danger">Thêm sản phẩm</a>
+                                    <a class="btn btn-secondary">Chỉnh sửa menu</a>
+                                    <h4 class="text-uppercase">@menu.Title <span class="text-lowercase fst-italic">(chưa có sản phẩm)</span></h4>
+                                </div>
                             }
 
                             else
                             {
-                                <h4 class="menu-title text-uppercase">@menu.Title</h4>
+                                <div class="menu-title d-flex align-items-center">
+                                    <a class="btn btn-outline-danger">Thêm sản phẩm</a>
+                                    <a class="btn btn-secondary">Chỉnh sửa menu</a>
+                                    <h4 class="text-uppercase">@menu.Title</h4>
+                                </div>
                                 
                                 foreach (var product in products.Where(p => p.Menus.Any(i => i.Id == menu.Id)))
                                 {
