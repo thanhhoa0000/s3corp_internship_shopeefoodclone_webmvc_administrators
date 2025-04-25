@@ -42,7 +42,7 @@ public class HomeController : Controller
                 Convert.ToString(storesResponse.Body)!,
                 new JsonSerializerOptions { PropertyNameCaseInsensitive = true })!;
         
-        viewModel.Stores = stores;
+        viewModel.Stores = stores.Where(s => s.State != StoreState.Deleted).ToList();
         
         return View(viewModel);
     }

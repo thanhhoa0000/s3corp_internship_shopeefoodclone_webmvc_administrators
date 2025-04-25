@@ -1,16 +1,17 @@
 "use strict";
 $(function () {
     let section = localStorage.getItem('section');
-    if (section) {
-        section = JSON.parse(section);
-        document.querySelectorAll(".nav-link").forEach((item) => {
-            item.classList.remove("active");
-        });
-        const activeItem = document.querySelector(`.nav-link[code-name='${section}']`);
-        if (activeItem) {
-            activeItem.classList.add("active");
-        }
+    if (!section) {
+        section = "stores";
+        localStorage.setItem('section', JSON.stringify(section));
     }
+    else {
+        section = JSON.parse(section);
+    }
+    document.querySelectorAll(".main-nav-item").forEach((item) => {
+        item.classList.remove("active");
+    });
+    $(`.main-nav-item[code-name='${section}']`).addClass("active");
 });
 $('form > button').on('click', function (event) {
     event.preventDefault();
@@ -38,4 +39,4 @@ $(document).on('focus', 'input', function () {
     span.text('');
     span.hide().attr("hidden", "true");
 });
-//# sourceMappingURL=login.js.map
+//# sourceMappingURL=menu.js.map

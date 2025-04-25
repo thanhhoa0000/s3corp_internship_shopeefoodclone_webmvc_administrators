@@ -1,0 +1,27 @@
+﻿@model CreateMenuViewModel
+
+@{
+    ViewData["title"] = $"Create menu | ShopeeFood.vn | Administrator";
+}
+
+<form class="p-5" asp-controller="Menu" asp-action="VendorCreate" method="post">
+    @Html.AntiForgeryToken()
+    <input type="hidden" asp-for="StoreId" value="@Model.StoreId" />
+    
+    <h4>Tạo menu</h4>
+    <div class="form-group mb-3">
+        <label class="form-label">Nội dung menu</label>
+        <input asp-for="Title" type="text" class="form-control" placeholder="Món mới/Món đang giảm/...">
+        <span class="validate-message" hidden></span>
+    </div>
+    
+    <button class="btn btn-success d-flex align-items-center justify-content-end ms-auto mt-5" type="submit" onclick="">Tạo menu</button>
+</form>
+
+@section Styles {
+    <link rel="stylesheet" href="~/css/menu.css" asp-append-version="true"/>
+}
+
+@section Scripts {
+    <script src="~/js/menu.js" asp-append-version="true"></script>
+}

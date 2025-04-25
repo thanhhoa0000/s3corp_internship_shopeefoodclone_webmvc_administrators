@@ -1,8 +1,7 @@
 # Base stage for running the application
 FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS base
 
-RUN mkdir -p /home/app/.aspnet/https && \
-    chown -R app:app /home/app/.aspnet/https && \
+RUN mkdir -p /home/app/.aspnet/https && chown -R app:app /home/app/.aspnet/https && \
     mkdir -p /keys && chmod -R 777 /keys
 
 USER app

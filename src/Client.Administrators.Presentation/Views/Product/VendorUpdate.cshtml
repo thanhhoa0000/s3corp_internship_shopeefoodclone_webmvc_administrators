@@ -1,0 +1,66 @@
+﻿@model UpdateProductViewModel
+
+@{
+    ViewData["title"] = $"Update product | ShopeeFood.vn | Administrator";
+}
+
+<form class="p-3" asp-controller="Product" asp-action="VendorUpdate" method="post" enctype="multipart/form-data"
+      onsubmit="return confirm('Bạn muốn cập nhật sản phẩm này?');">
+    @Html.AntiForgeryToken()
+    <h4 class="text-uppercase">Cập nhật thông tin sản phẩm</h4>
+    <input type="hidden" asp-for="ProductId" value="@Model.ProductId"/>
+    <input type="hidden" asp-for="StoreId" value="@Model.StoreId"/>
+    <input type="hidden" asp-for="CoverImagePath" value="@Model.CoverImagePath"/>
+    <input type="hidden" asp-for="ConcurrencyStamp" value="@Model.ConcurrencyStamp"/>
+    
+    <div class="product-img">
+        <img
+            class="mb-1"
+            alt=""
+            src="@Url.Content($"~/images{Model.CoverImagePath}")"
+            onerror="
+                                    this.onerror = null; 
+                                    this.src = '/images/stores/product-img.jpg'"/>
+        <button type="button" class="btn btn-outline-orange">Thay đổi ảnh</button>
+    </div>
+    
+    <div class="form-group mb-3 update-product-img" hidden>
+        <label class="form-label">Hình ảnh (.jpg, .jpeg, .png)<span class="ms-1 text-danger">*</span></label>
+        <input class="form-control" asp-for="CoverImage" id="product-img" type="file" accept=".jpg,.jpeg,.png">
+        <span class="validate-message image" hidden></span>
+    </div>
+
+    <div class="form-group mb-3">
+        <label class="form-label">Tên sản phẩm<span class="ms-1 text-danger">*</span></label>
+        <input asp-for="Name" type="text" class="form-control validate-field" placeholder="Tên sản phẩm"/>
+        <span class="validate-message name" hidden></span>
+    </div>
+    
+    <div class="form-group mb-3">
+        <label class="form-label">Mô tả sản phẩm<span class="ms-1 text-danger">*</span></label>
+        <textarea asp-for="Description" type="text" class="form-control validate-field" placeholder="Mô tả sản phẩm..."></textarea>
+        <span class="validate-message description" hidden></span>
+    </div>
+    
+    <div class="form-group mb-3">
+        <label class="form-label">Giá tiền<span class="ms-1 text-danger">*</span></label>
+        <input asp-for="Price" type="text" class="form-control validate-field" placeholder="Đơn vị: VND" />
+        <span class="validate-message price" hidden></span>
+    </div>
+    
+    <div class="form-group mb-3">
+        <label class="form-label">Giá khuyến mãi<span class="ms-1 text-danger">*</span></label>
+        <input asp-for="Discount" type="text" class="form-control validate-field" placeholder="Đơn vị: VND" />
+        <span class="validate-message price" hidden></span>
+    </div>
+
+    <button class="btn btn-success d-flex align-items-center justify-content-end ms-auto" type="submit" onclick="">Cập nhật sản phẩm</button>
+</form>
+
+@section Styles {
+    <link rel="stylesheet" href="~/css/product.css" asp-append-version="true"/>
+}
+
+@section Scripts {
+    <script src="~/js/product.js" asp-append-version="true"></script>
+}
