@@ -21,7 +21,8 @@ RUN apt-get update && \
     curl -fsSL https://deb.nodesource.com/setup_18.x | bash - && \
     apt-get install -y nodejs && \
     npm install jquery && \
-    npm install --save-dev @types/jquery @types/jquery.validation @types/jquery-validation-unobtrusive && \
+    npm install --save-dev @types/jquery @types/jquery.validation && \
+    npm install --save @types/toastr && \
     apt-get clean && rm -rf /var/lib/apt/lists/*
 
 COPY ["Directory.Packages.props", "."]

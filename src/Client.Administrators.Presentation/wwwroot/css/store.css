@@ -1,4 +1,4 @@
-.store-details-section{
+.store-details-section {
     background-color: #FFFFFF;
     border-radius: 6px;
     margin-top: 50px;
@@ -22,13 +22,13 @@
     font-weight: 400;
 }
 
-.opening-hours span{
+.opening-hours span {
     color: #329900;
     font-weight: 700;
     margin-left: 25px;
 }
 
-.closing-hours span{
+.closing-hours span {
     color: #bd0734;
     font-weight: 700;
     margin-left: 9px;
@@ -156,6 +156,7 @@
 .menu-title {
     margin-top: 30px;
     margin-bottom: 15px;
+    cursor: pointer;
 }
 
 .menu-title h4 {
@@ -169,6 +170,33 @@
     text-decoration: none;
     margin-right: 10px;
     height: 40px;
+}
+
+.menu-update-section {
+    margin-bottom: 30px;
+}
+
+.menu-update-section .products-search {
+    margin: 15px 0;
+}
+
+.menu-update-section .products-search input {
+    border-radius: 6px;
+}
+
+.menu-update-section .products-search input::placeholder {
+    font-family: var(--primary-font-family), sans-serif;
+    color: #959595
+}
+
+.menu-update-buttons-section button {
+    margin-top: 30px;
+    font-weight: 700;
+    height: 35px;
+}
+
+.menu-update-product-item {
+    margin-top: 10px
 }
 
 .update-store-form {

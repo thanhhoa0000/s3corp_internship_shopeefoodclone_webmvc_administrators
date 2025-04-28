@@ -7,7 +7,7 @@ public class MenuDto
     public Guid StoreId { get; set; }
     [Required]
     [MaxLength(100)]
-    public required string Title { get; set; }
+    public string? Title { get; set; }
     public MenuState State { get; set; } = MenuState.Active;
     public Guid ConcurrencyStamp { get; set; }
     public DateTime CreatedDate { get; set; } = DateTime.UtcNow;

@@ -137,6 +137,50 @@ $('.store-address-section div button').on('blur', function () {
         }
     }, 0);
 });
+$(document).on('click', '.menu-title', function () {
+    const menuId = $(this).attr('menu-id');
+    const $target = $(`.menu-update-section[menu-id="${menuId}"]`);
+    if ($target.is(':hidden')) {
+        $target.removeAttr('hidden');
+    }
+    else {
+        $target.attr('hidden', 'true');
+    }
+});
+$(document).on('click', '.menu-update-buttons-section button', function () {
+    const menuId = $(this).attr('menu-id');
+    const $target = $(`.menu-update-section[menu-id="${menuId}"]`);
+    let productIds = [];
+    const $input = $target.find('input[type="checkbox"]');
+    $input.each(function () {
+        const val = $(this).val();
+        if ($(this).is(':checked') && typeof val === 'string') {
+            productIds.push(val);
+        }
+    });
+    $.ajax({
+        url: `/Store/AddProductsToMenu`,
+        type: "POST",
+        data: {
+            menuId: menuId,
+            productIds: productIds
+        },
+        traditional: true,
+        success: function (response) {
+            if (response.success) {
+                location.reload();
+                toastr.success(response.message);
+                document.dispatchEvent(new Event("menuUpdated"));
+            }
+            else {
+                toastr.error(response.message);
+            }
+        },
+        error: function () {
+            console.error("Failed to update menu.");
+        }
+    });
+});
 function getProvinces() {
     $.ajax({
         url: `${gatewayUrl}/provinces`,

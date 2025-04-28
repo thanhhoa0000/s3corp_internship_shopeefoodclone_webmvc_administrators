@@ -39,6 +39,15 @@ public class MenuService : IMenuService
         }, bearer: true);
     }
 
+    public async Task<Response?> GetMenuByIdAsync(Guid menuId)
+    {
+        return await _service.SendAsync(new Request()
+        {   
+            ApiMethod = ApiMethod.Get,
+            Url = $"{ApiUrlProperties.ApiGatewayUrl}/menus/{menuId}"
+        }, bearer: false);
+    }
+
     public async Task<Response?> VendorAddProductsToMenuAsync(AddProductsToMenuRequest request)
     {
         return await _service.SendAsync(new Request()
