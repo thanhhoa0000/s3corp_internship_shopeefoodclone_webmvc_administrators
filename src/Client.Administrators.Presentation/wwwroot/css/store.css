@@ -61,7 +61,8 @@
 .buttons-section a {
     font-weight: 700;
     height: 35px;
-    width: 150px;
+    font-size: 16px;
+    width: 200px;
 }
 
 .products-section {
@@ -172,19 +173,27 @@
     height: 40px;
 }
 
-.menu-update-section {
+.menu-update-section, .menu-delete-products-section {
     margin-bottom: 30px;
 }
 
-.menu-update-section .products-search {
+.menu-update-section div button, .menu-delete-products-section div button {
+    font-weight: 700;
+    font-size: 14px;
+    height: 35px;
+    width: 150px;
+    text-align: center;
+}
+
+.menu-update-section .products-search, .menu-delete-products-section .products-search {
     margin: 15px 0;
 }
 
-.menu-update-section .products-search input {
+.menu-update-section .products-search input, .menu-delete-products-section .products-search input {
     border-radius: 6px;
 }
 
-.menu-update-section .products-search input::placeholder {
+.menu-update-section .products-search input::placeholder, .menu-delete-products-section .products-search input::placeholder {
     font-family: var(--primary-font-family), sans-serif;
     color: #959595
 }

@@ -168,18 +168,81 @@ $('.store-address-section div button').on('blur', function () {
     }, 0);
 });
 
-$(document).on('click', '.menu-title', function () {
-    const menuId = $(this).attr('menu-id');
-    const $target = $(`.menu-update-section[menu-id="${menuId}"]`);
+$(document).on('click', '.menu-title', function (event) {
+    const menuTitle = $(event.currentTarget);
+    const menuId = menuTitle.attr('menu-id');
+    if (!menuId) return;
 
-    if ($target.is(':hidden')) {
-        $target.removeAttr('hidden');
+    const updateSection = $(`.menu-update-section[menu-id="${menuId}"]`);
+    const deleteSection = $(`.menu-delete-products-section[menu-id="${menuId}"]`);
+
+    if (updateSection.is(':hidden') && deleteSection.is(':hidden')) {
+        updateSection.removeAttr("hidden").show();
     } else {
-        $target.attr('hidden', 'true');
+        updateSection.hide().attr("hidden", "true");
+        deleteSection.hide().attr("hidden", "true");
     }
 });
 
-$(document).on('click', '.menu-update-buttons-section button', function () {
+$(document).on('click', '.menu-update-section div button', function () {
+    const menuId = $(this).closest('.menu-update-section').attr('menu-id');
+    if (!menuId) return;
+
+    const updateSection = $(`.menu-update-section[menu-id="${menuId}"]`);
+    const deleteSection = $(`.menu-delete-products-section[menu-id="${menuId}"]`);
+
+    updateSection.hide().attr("hidden", "true");
+    deleteSection.removeAttr("hidden").show();
+});
+
+$(document).on('click', '.menu-delete-products-section div button', function () {
+    const menuId = $(this).closest('.menu-delete-products-section').attr('menu-id');
+    if (!menuId) return;
+
+    const updateSection = $(`.menu-update-section[menu-id="${menuId}"]`);
+    const deleteSection = $(`.menu-delete-products-section[menu-id="${menuId}"]`);
+
+    deleteSection.hide().attr("hidden", "true");
+    updateSection.removeAttr("hidden").show();
+});
+
+$(document).on('input', '.menu-update-section .products-search input', function () {
+    const keyword = $(this).val().trim().toLowerCase();
+
+    $('.menu-update-section .products-list .menu-update-product-item').each(function () {
+        const productName = $(this).find('label')
+            .text().trim()
+            .toLowerCase()
+            .normalize('NFD')
+            .replace(/\p{Diacritic}/gu, '');
+
+        if (keyword === "" || productName.includes(keyword)) {
+            $(this).show();
+        } else {
+            $(this).hide();
+        }
+    });
+});
+
+$(document).on('input', '.menu-delete-products-section .products-search input', function () {
+    const keyword = $(this).val().trim().toLowerCase();
+
+    $('.menu-delete-products-section .products-list .menu-update-product-item').each(function () {
+        const productName = $(this).find('label')
+            .text().trim()
+            .toLowerCase()
+            .normalize('NFD')
+            .replace(/\p{Diacritic}/gu, '');
+
+        if (keyword === "" || productName.includes(keyword)) {
+            $(this).show();
+        } else {
+            $(this).hide();
+        }
+    });
+});
+
+$(document).on('click', '.add-products-to-menu-btn', function () {
     const menuId = $(this).attr('menu-id');
     const $target = $(`.menu-update-section[menu-id="${menuId}"]`);
     let productIds: string[] = [];

@@ -48,7 +48,7 @@ public class MenuService : IMenuService
         }, bearer: false);
     }
 
-    public async Task<Response?> VendorAddProductsToMenuAsync(AddProductsToMenuRequest request)
+    public async Task<Response?> VendorAddProductsToMenuAsync(VendorAddProductsToMenuRequest request)
     {
         return await _service.SendAsync(new Request()
         {

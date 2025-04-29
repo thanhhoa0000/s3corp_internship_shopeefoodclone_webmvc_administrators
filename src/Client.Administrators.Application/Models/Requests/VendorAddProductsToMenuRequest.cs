@@ -1,0 +1,3 @@
+﻿namespace ShopeeFoodClone.WebMvc.Administrators.Application.Models.Requests;
+
+public class VendorAddProductsToMenuRequest : VendorUpdateProductsForMenuBaseRequest;

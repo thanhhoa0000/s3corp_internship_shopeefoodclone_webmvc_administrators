@@ -167,7 +167,7 @@ public class StoreController : Controller
                 Convert.ToString(menuResponse.Body)!,
                 new JsonSerializerOptions { PropertyNameCaseInsensitive = true })!;
     
-        var request = new AddProductsToMenuRequest
+        var request = new VendorAddProductsToMenuRequest
         {
             MenuId = menuId,
             ConcurrencyStamp = menu.ConcurrencyStamp,
