@@ -113,6 +113,55 @@ footer .container {
     color: var(--primary-color);
 }
 
+.pagination {
+    text-align: center;
+    margin-top: 30px;
+    max-height: 30px;
+    overflow: hidden;
+    list-style: none;
+}
+
+.pagination .disabled {
+    display: none;
+}
+
+.pagination li.active a {
+    background-color: #CF2127;
+    color: #FFFFFF;
+}
+
+.pagination li:hover:not(.active):not(:first-child):not(:last-child) a {
+    background-color: #CF2127;
+    color: #FFFFFF;
+}
+
+.pagination li {
+    display: inline-block;
+}
+
+.pagination li a {
+    text-decoration: none;
+    font-family: "Noto Sans", Arial, sans-serif;
+    font-size: 13px;
+    font-weight: 400;
+    color: #252525;
+    text-align: center;
+    line-height: 30px;
+    width: 40px;
+    height: 30px;
+    border-radius: 2px;
+    display: inline-block;
+    margin: 0 5px;
+    position: relative;
+    cursor: pointer;
+    transition: .2s ease-in-out;
+}
+
+.pagination li a i {
+    color: #CF2127;
+    font-size: 20px;
+}
+
 .opentime-status {
     top: 12px;
     left: -4px;

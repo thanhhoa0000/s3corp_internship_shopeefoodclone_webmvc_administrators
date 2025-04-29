@@ -2,6 +2,7 @@
 $(function () {
     let section = localStorage.getItem('section');
     const vendorId = $('.home-stores-section').attr('vendor-id');
+    console.log(vendorId);
     if (!section) {
         section = "stores";
         localStorage.setItem('section', JSON.stringify(section));
@@ -13,11 +14,16 @@ $(function () {
         item.classList.remove("active");
     });
     $(`.main-nav-item[code-name='${section}']`).addClass("active");
-    getStores(vendorId || '');
+    getStores(vendorId || '', 5, 1);
+    $(document).on('click', '.pagination a', function () {
+        let pageNumber = Number($(this).attr('page') ?? 1);
+        console.log(vendorId);
+        getStores(vendorId || '', 5, pageNumber);
+    });
 });
-function getStores(vendorId) {
+function getStores(vendorId, pageSize = 5, pageNumber = 1) {
     $.ajax({
-        url: `/Home/Index?vendorId=${vendorId}`,
+        url: `/Home/Index?vendorId=${vendorId}&pageSize=${pageSize}&pageNumber=${pageNumber}`,
         type: 'POST',
         success: (response) => {
             let parsed = $('<div>').html(response);

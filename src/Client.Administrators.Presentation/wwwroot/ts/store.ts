@@ -102,7 +102,7 @@ $('form > button').on('click', function (event) {
             $(fileInput).closest('.form-group')!.find('.validate-message').text('Image is required.');
         }
     }
-    
+
     console.log(isValid);
 
     if (isValid) {
@@ -166,6 +166,154 @@ $('.store-address-section div button').on('blur', function () {
             inputAddress.css('border-color', primaryRed);
         }
     }, 0);
+});
+
+$(document).on('click', '.menu-title', function (event) {
+    const menuTitle = $(event.currentTarget);
+    const menuId = menuTitle.attr('menu-id');
+    if (!menuId) return;
+
+    const updateSection = $(`.menu-update-section[menu-id="${menuId}"]`);
+    const deleteSection = $(`.menu-delete-products-section[menu-id="${menuId}"]`);
+
+    if (updateSection.is(':hidden') && deleteSection.is(':hidden')) {
+        updateSection.removeAttr("hidden").show();
+    } else {
+        updateSection.hide().attr("hidden", "true");
+        deleteSection.hide().attr("hidden", "true");
+    }
+});
+
+$(document).on('click', '.menu-update-section div button', function () {
+    const menuId = $(this).closest('.menu-update-section').attr('menu-id');
+    if (!menuId) return;
+
+    const updateSection = $(`.menu-update-section[menu-id="${menuId}"]`);
+    const deleteSection = $(`.menu-delete-products-section[menu-id="${menuId}"]`);
+
+    updateSection.hide().attr("hidden", "true");
+    deleteSection.removeAttr("hidden").show();
+});
+
+$(document).on('click', '.menu-delete-products-section div button', function () {
+    const menuId = $(this).closest('.menu-delete-products-section').attr('menu-id');
+    if (!menuId) return;
+
+    const updateSection = $(`.menu-update-section[menu-id="${menuId}"]`);
+    const deleteSection = $(`.menu-delete-products-section[menu-id="${menuId}"]`);
+
+    deleteSection.hide().attr("hidden", "true");
+    updateSection.removeAttr("hidden").show();
+});
+
+$(document).on('input', '.menu-update-section .products-search input', function () {
+    const keyword = $(this).val().trim().toLowerCase();
+
+    $('.menu-update-section .products-list .menu-update-product-item').each(function () {
+        const productName = $(this).find('label')
+            .text().trim()
+            .toLowerCase()
+            .normalize('NFD')
+            .replace(/\p{Diacritic}/gu, '');
+
+        if (keyword === "" || productName.includes(keyword)) {
+            $(this).show();
+        } else {
+            $(this).hide();
+        }
+    });
+});
+
+$(document).on('input', '.menu-delete-products-section .products-search input', function () {
+    const keyword = $(this).val().trim().toLowerCase();
+
+    $('.menu-delete-products-section .products-list .menu-update-product-item').each(function () {
+        const productName = $(this).find('label')
+            .text().trim()
+            .toLowerCase()
+            .normalize('NFD')
+            .replace(/\p{Diacritic}/gu, '');
+
+        if (keyword === "" || productName.includes(keyword)) {
+            $(this).show();
+        } else {
+            $(this).hide();
+        }
+    });
+});
+
+$(document).on('click', '.add-products-to-menu-btn', function () {
+    const menuId = $(this).attr('menu-id');
+    const $target = $(`.menu-update-section[menu-id="${menuId}"]`);
+    let productIds: string[] = [];
+
+    const $input = $target.find('input[type="checkbox"]');
+
+    $input.each(function () {
+        const val = $(this).val();
+        if ($(this).is(':checked') && typeof val === 'string') {
+            productIds.push(val);
+        }
+    });
+
+    $.ajax({
+        url: `/Menu/AddProductsToMenu`,
+        type: "POST",
+        data: {
+            menuId: menuId,
+            productIds: productIds
+        },
+        traditional: true,
+        success: function (response: any): void {
+            if (response.success) {
+
+                location.reload();
+                toastr.success(response.message);
+                document.dispatchEvent(new Event("menuUpdated"));
+            } else {
+                toastr.error(response.message);
+            }
+        },
+        error: function (): void {
+            console.error("Failed to update menu.");
+        }
+    });
+});
+
+$(document).on('click', '.remove-products-from-menu-btn', function () {
+    const menuId = $(this).attr('menu-id');
+    const $target = $(`.menu-delete-products-section[menu-id="${menuId}"]`);
+    let productIds: string[] = [];
+
+    const $input = $target.find('input[type="checkbox"]');
+
+    $input.each(function () {
+        const val = $(this).val();
+        if ($(this).is(':checked') && typeof val === 'string') {
+            productIds.push(val);
+        }
+    });
+
+    $.ajax({
+        url: `/Menu/RemoveProductsFromMenu`,
+        type: "POST",
+        data: {
+            menuId: menuId,
+            productIds: productIds
+        },
+        traditional: true,
+        success: function (response: any): void {
+            if (!response.success) {
+                toastr.error("Đã xảy ra lỗi");
+            }
+            location.reload();
+            toastr.success("Cập nhật menu thành công");
+            document.dispatchEvent(new Event("menuUpdated"));
+        },
+        error: function (): void {
+            console.error("Failed to update menu.");
+        }
+    });
 });
 
 function getProvinces(): void {

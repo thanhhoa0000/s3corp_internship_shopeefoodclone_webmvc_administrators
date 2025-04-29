@@ -64,7 +64,7 @@ public class StoreController : Controller
         
         viewModel.Store = store;
         viewModel.Products = products.Where(p => p.State != ProductState.Deleted).ToList();
-        viewModel.Menus = menus;
+        viewModel.Menus = menus.Where(m => m.State != MenuState.Inactive).ToList();
         
         return View(viewModel);
     }

@@ -56,6 +56,27 @@
                         }
                     </div>
                 }
+                else
+                {
+                    <div class="last-updated">
+                        Thời điểm khởi tạo:
+                        @if ((currentTime - store.CreatedAt) < TimeSpan.FromMinutes(1))
+                        {
+                            <span class="ms-1">Vừa xong</span>
+                        }
+                        else
+                        {
+                            <span class="ms-1" style="color: darkred">
+                                @((currentTime - store.CreatedAt).Humanize(
+                                    precision: 1,
+                                    culture: new CultureInfo("vi"),
+                                    maxUnit: TimeUnit.Day,
+                                    minUnit: TimeUnit.Minute
+                                )) trước
+                            </span>
+                        }
+                    </div>
+                }
 
             </div>
         </div>
@@ -63,15 +84,19 @@
         <div class="buttons-section d-flex flex-column align-items-end ms-auto mb-5">
             <a type="button" class="btn btn-success d-flex align-items-center justify-content-center mb-2"
                asp-controller="Store" asp-action="VendorUpdate" asp-route-storeId="@storeId">
-                Chỉnh sửa
+                Chỉnh sửa cửa hàng
             </a>
             <a type="button" class="btn btn-orange d-flex align-items-center justify-content-center mb-2"
                asp-controller="Product" asp-action="Create" asp-route-storeId="@storeId">
                 Thêm sản phẩm
             </a>
-            <a type="button" class="btn btn-outline-primary d-flex align-items-center justify-content-center"
+            <a type="button" class="btn btn-outline-primary d-flex align-items-center justify-content-center mb-2"
                asp-controller="Menu" asp-action="VendorCreate" asp-route-storeId="@storeId">
                 Tạo menu
+            </a>
+            <a type="button" class="btn btn-dark d-flex align-items-center justify-content-center"
+               asp-controller="Menu" asp-action="List" asp-route-storeId="@storeId">
+                Quản lí menu
             </a>
         </div>
 
@@ -84,27 +109,159 @@
                 {
                     if (menus.Any())
                     {
-                        <h4 class="text-uppercase">Danh sách sản phẩm đã có menu</h4>
+                        <h4 class="text-uppercase">Danh sách sản phẩm đã có trong menu</h4>
 
                         foreach (var menu in menus.OrderBy(m => m.Products.Count == 0 ? 1 : 0))
                         {
                             if (menu.Products.Count == 0)
                             {
-                                <div class="menu-title d-flex align-items-center">
-                                    <a class="btn btn-outline-danger">Thêm sản phẩm</a>
-                                    <a class="btn btn-secondary">Chỉnh sửa menu</a>
-                                    <h4 class="text-uppercase">@menu.Title <span class="text-lowercase fst-italic">(chưa có sản phẩm)</span></h4>
+                                <div class="menu-group" menu-id="@menu.Id">
+                                    <div class="menu-title d-flex align-items-center" menu-id="@menu.Id">
+                                        <h4 class="text-uppercase"><i
+                                                class="bi bi-pencil-square me-1"></i>@menu.Title <span
+                                                class="text-lowercase fst-italic">(chưa có sản phẩm)</span></h4>
+                                    </div>
+
+                                    <div class="menu-update-section" menu-id="@menu.Id" hidden>
+                                        <div class="d-flex justify-content-between align-items-center mt-1 mb-1">
+                                            <h6 class="text-uppercase">Thêm sản phẩm vào menu</h6>
+                                            <button type="button" class="btn btn-outline-primary">Xoá sản phẩm</button>
+                                        </div>
+                                        <div class="products-search">
+                                            <input class="form-control" type="search" placeholder="Tìm món"
+                                                   aria-label="Tìm món"/>
+                                        </div>
+
+                                        <div class="products-list">
+                                            @foreach (var product in products.Where(p => p.Menus.Any(i => i.Id != menu.Id)))
+                                            {
+                                                <div
+                                                    class="form-check menu-update-product-item border-bottom ms-5 pb-1">
+                                                    <input class="form-check-input" type="checkbox" id="@product.Id"
+                                                           value="@product.Id"/>
+                                                    <label class="form-check-label"
+                                                           for="@product.Id">@product.Name</label>
+                                                </div>
+                                            }
+                                        </div>
+
+                                        <div
+                                            class="menu-update-buttons-section d-flex flex-column align-items-end ms-auto mb-5">
+                                            <button type="button"
+                                                    class="btn btn-success d-flex align-items-center justify-content-center add-products-to-menu-btn"
+                                                    menu-id="@menu.Id">Cập nhật menu
+                                            </button>
+                                        </div>
+                                    </div>
+
+                                    <div class="menu-delete-products-section" menu-id="@menu.Id" hidden>
+                                        <div class="d-flex justify-content-between align-items-center mt-1 mb-1">
+                                            <h6 class="text-uppercase">Xoá sản phẩm khỏi menu</h6>
+                                            <button type="button" class="btn btn-primary">Thêm sản phẩm</button>
+                                        </div>
+                                        <div class="products-search">
+                                            <input class="form-control" type="search" placeholder="Tìm món"
+                                                   aria-label="Tìm món"/>
+                                        </div>
+
+                                        <div class="products-list">
+                                            @foreach (var product in products.Where(p => p.Menus.Any(i => i.Id == menu.Id)))
+                                            {
+                                                <div
+                                                    class="form-check menu-update-product-item border-bottom ms-5 pb-1">
+                                                    <input class="form-check-input" type="checkbox" id="@product.Id"
+                                                           value="@product.Id"/>
+                                                    <label class="form-check-label"
+                                                           for="@product.Id">@product.Name</label>
+                                                </div>
+                                            }
+                                        </div>
+
+                                        <div
+                                            class="menu-update-buttons-section d-flex flex-column align-items-end ms-auto mb-5">
+                                            <button type="button"
+                                                    class="btn btn-danger d-flex align-items-center justify-content-center remove-products-from-menu-btn"
+                                                    menu-id="@menu.Id">Xoá sản phẩm
+                                            </button>
+                                        </div>
+                                    </div>
                                 </div>
                             }
 
                             else
                             {
-                                <div class="menu-title d-flex align-items-center">
-                                    <a class="btn btn-outline-danger">Thêm sản phẩm</a>
-                                    <a class="btn btn-secondary">Chỉnh sửa menu</a>
-                                    <h4 class="text-uppercase">@menu.Title</h4>
+                                <div class="menu-group" menu-id="@menu.Id">
+                                    <div class="menu-title d-flex align-items-center" menu-id="@menu.Id">
+                                        <h4 class="text-uppercase"><i
+                                                class="bi bi-pencil-square me-1"></i>@menu.Title</h4>
+                                    </div>
+
+                                    <div class="menu-update-section" menu-id="@menu.Id" hidden>
+                                        <div class="d-flex justify-content-between align-items-center mt-1 mb-1">
+                                            <h6 class="text-uppercase">Thêm sản phẩm vào menu</h6>
+                                            <button type="button" class="btn btn-outline-primary">Xoá sản phẩm
+                                            </button>
+                                        </div>
+                                        <div class="products-search">
+                                            <input class="form-control" type="search" placeholder="Tìm món"
+                                                   aria-label="Tìm món"/>
+                                        </div>
+
+                                        <div class="products-list">
+                                            @foreach (var product in products.Where(p => p.Menus.Any(i => i.Id != menu.Id)))
+                                            {
+                                                <div
+                                                    class="form-check menu-update-product-item border-bottom ms-5 pb-1">
+                                                    <input class="form-check-input" type="checkbox" id="@product.Id"
+                                                           value="@product.Id"/>
+                                                    <label class="form-check-label"
+                                                           for="@product.Id">@product.Name</label>
+                                                </div>
+                                            }
+                                        </div>
+
+                                        <div
+                                            class="menu-update-buttons-section d-flex flex-column align-items-end ms-auto mb-5">
+                                            <button type="button"
+                                                    class="btn btn-success d-flex align-items-center justify-content-center add-products-to-menu-btn"
+                                                    menu-id="@menu.Id">Cập nhật menu
+                                            </button>
+                                        </div>
+                                    </div>
+
+                                    <div class="menu-delete-products-section" menu-id="@menu.Id" hidden>
+                                        <div class="d-flex justify-content-between align-items-center mt-1 mb-1">
+                                            <h6 class="text-uppercase">Xoá sản phẩm khỏi menu</h6>
+                                            <button type="button" class="btn btn-primary">Thêm sản phẩm</button>
+                                        </div>
+                                        <div class="products-search">
+                                            <input class="form-control" type="search" placeholder="Tìm món"
+                                                   aria-label="Tìm món"/>
+                                        </div>
+
+                                        <div class="products-list">
+                                            @foreach (var product in products.Where(p => p.Menus.Any(i => i.Id == menu.Id)))
+                                            {
+                                                <div
+                                                    class="form-check menu-update-product-item border-bottom ms-5 pb-1">
+                                                    <input class="form-check-input" type="checkbox" id="@product.Id"
+                                                           value="@product.Id"/>
+                                                    <label class="form-check-label"
+                                                           for="@product.Id">@product.Name</label>
+                                                </div>
+                                            }
+                                        </div>
+
+                                        <div
+                                            class="menu-update-buttons-section d-flex flex-column align-items-end ms-auto mb-5">
+                                            <button type="button"
+                                                    class="btn btn-danger d-flex align-items-center justify-content-center remove-products-from-menu-btn"
+                                                    menu-id="@menu.Id">Xoá sản phẩm
+                                            </button>
+                                        </div>
+                                    </div>
                                 </div>
-                                
+
                                 foreach (var product in products.Where(p => p.Menus.Any(i => i.Id == menu.Id)))
                                 {
                                     <div class="product-item row m-0 mb-3 p-3 ms-2" product-id="@product.Id">
@@ -170,7 +327,8 @@
                                                     Chỉnh sửa
                                                 </a>
 
-                                                <form asp-controller="Product" asp-action="VendorDelete" method="post"
+                                                <form asp-controller="Product" asp-action="VendorDelete"
+                                                      method="post"
                                                       onsubmit="return confirm('Bạn muốn xoá sản phẩm này?');">
                                                     <input type="hidden" name="productId" value="@product.Id"/>
                                                     <button type="submit"

@@ -25,10 +25,26 @@ public class HomeController : Controller
     }
 
     [HttpPost]
-    public async Task<IActionResult> Index(Guid vendorId, int pageSize = 5, int pageNumber = 1)
+    public async Task<IActionResult> Index(
+        Guid vendorId,
+        int pageSize = 5, 
+        int pageNumber = 1)
     {
         var viewModel = new HomeViewModel();
         var stores = new List<StoreDto>();
+        var storesCount = 0;
+        
+        Response? storesCountResponse = await _storeService.GetStoresCount(new GetStoresCountRequest
+        {
+            VendorId = vendorId
+        });
+        
+        _logger.LogDebug($"vendorId: {vendorId}");
+
+        if (storesCountResponse!.IsSuccessful)
+            storesCount = JsonSerializer.Deserialize<int>(
+                Convert.ToString(storesCountResponse.Body)!,
+                new JsonSerializerOptions { PropertyNameCaseInsensitive = true })!;
 
         Response? storesResponse = await _storeService.GetStoresByVendorIdAsync(new GetStoresByVendorIdRequest
         {
@@ -43,6 +59,9 @@ public class HomeController : Controller
                 new JsonSerializerOptions { PropertyNameCaseInsensitive = true })!;
         
         viewModel.Stores = stores.Where(s => s.State != StoreState.Deleted).ToList();
+        viewModel.PagesCount = (int)Math.Ceiling((double)storesCount / pageSize);
+        viewModel.CurrentPage = pageNumber;
+        viewModel.TotalStoresCount = storesCount;
         
         return View(viewModel);
     }

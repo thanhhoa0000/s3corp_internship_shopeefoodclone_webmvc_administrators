@@ -39,13 +39,41 @@ public class MenuService : IMenuService
         }, bearer: true);
     }
 
-    public async Task<Response?> VendorAddProductsToMenuAsync(AddProductsToMenuRequest request)
+    public async Task<Response?> GetMenuByIdAsync(Guid menuId)
+    {
+        return await _service.SendAsync(new Request()
+        {   
+            ApiMethod = ApiMethod.Get,
+            Url = $"{ApiUrlProperties.ApiGatewayUrl}/menus/{menuId}"
+        }, bearer: false);
+    }
+
+    public async Task<Response?> VendorAddProductsToMenuAsync(VendorAddProductsToMenuRequest request)
     {
         return await _service.SendAsync(new Request()
         {
             ApiMethod = ApiMethod.Post,
             Body = request,
             Url = $"{ApiUrlProperties.ApiGatewayUrl}/menus/add-products",
-        });
+        }, bearer: true);
+    }
+
+    public async Task<Response?> VendorRemoveProductsFromMenuAsync(VendorRemoveProductsFromMenuRequest request)
+    {
+        return await _service.SendAsync(new Request()
+        {
+            ApiMethod = ApiMethod.Post,
+            Body = request,
+            Url = $"{ApiUrlProperties.ApiGatewayUrl}/menus/remove-products",
+        }, bearer: true);   
+    }
+
+    public async Task<Response?> VendorDeleteMenuAsync(Guid menuId)
+    {
+        return await _service.SendAsync(new Request()
+        {
+            ApiMethod = ApiMethod.Delete,
+            Url = $"{ApiUrlProperties.ApiGatewayUrl}/menus/delete/{menuId}",
+        }, bearer: true);
     }
 }
