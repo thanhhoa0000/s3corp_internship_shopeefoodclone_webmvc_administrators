@@ -36,6 +36,7 @@ public class MenuController : Controller
                 new JsonSerializerOptions { PropertyNameCaseInsensitive = true })!;
         
         viewModel.Menus = menus.Where(m => m.State != MenuState.Inactive).ToList();
+        viewModel.StoreId = storeId;
         
         return View(viewModel);
     }

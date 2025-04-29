@@ -56,6 +56,27 @@
                         }
                     </div>
                 }
+                else
+                {
+                    <div class="last-updated">
+                        Thời điểm khởi tạo:
+                        @if ((currentTime - store.CreatedAt) < TimeSpan.FromMinutes(1))
+                        {
+                            <span class="ms-1">Vừa xong</span>
+                        }
+                        else
+                        {
+                            <span class="ms-1" style="color: darkred">
+                                @((currentTime - store.CreatedAt).Humanize(
+                                    precision: 1,
+                                    culture: new CultureInfo("vi"),
+                                    maxUnit: TimeUnit.Day,
+                                    minUnit: TimeUnit.Minute
+                                )) trước
+                            </span>
+                        }
+                    </div>
+                }
 
             </div>
         </div>
