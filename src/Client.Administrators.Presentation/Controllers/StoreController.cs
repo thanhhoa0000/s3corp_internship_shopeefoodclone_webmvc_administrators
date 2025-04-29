@@ -64,7 +64,7 @@ public class StoreController : Controller
         
         viewModel.Store = store;
         viewModel.Products = products.Where(p => p.State != ProductState.Deleted).ToList();
-        viewModel.Menus = menus;
+        viewModel.Menus = menus.Where(m => m.State != MenuState.Inactive).ToList();
         
         return View(viewModel);
     }
@@ -145,42 +145,5 @@ public class StoreController : Controller
         TempData["error"] = "Đã xảy ra lỗi";
         
         return View(model);
-    }
-
-    [HttpPost]
-    public async Task<IActionResult> AddProductsToMenu(Guid menuId, string[] productIds)
-    {
-        if (!User.Identity!.IsAuthenticated)
-        {
-            return RedirectToAction("Login", "Account");
-        }
-        
-        var menu = new MenuDto();
-        var store = new StoreDto();
-        var menus = new List<MenuDto>();
-        var products = new List<ProductDto>();
-        
-        Response? menuResponse = await _menuService.GetMenuByIdAsync(menuId);
-        
-        if (menuResponse!.IsSuccessful)
-            menu = JsonSerializer.Deserialize<MenuDto>(
-                Convert.ToString(menuResponse.Body)!,
-                new JsonSerializerOptions { PropertyNameCaseInsensitive = true })!;
-    
-        var request = new VendorAddProductsToMenuRequest
-        {
-            MenuId = menuId,
-            ConcurrencyStamp = menu.ConcurrencyStamp,
-            ProductIds = productIds.Select(s => Guid.Parse(s)).ToList()
-        };
-    
-        Response? addProductsToMenuResponse = await _menuService.VendorAddProductsToMenuAsync(request);
-    
-        if (addProductsToMenuResponse!.IsSuccessful)
-        {
-            return Json(new { success = true, message = "Cập nhật menu thành công" });
-        }
-    
-        return Json(new { success = false, message = "Đã xảy ra lỗi" });
     }
 }

@@ -1,0 +1,33 @@
+﻿@model MenusListViewModel
+
+@{
+    ViewData["title"] = $"Menu List | ShopeeFood.vn | Administrator";
+}
+
+<div class="menus-list-section p-5">
+    @if (Model.Menus is not null)
+    {
+        var menus = Model.Menus;
+    
+        <h4 class="text-uppercase">Danh sách menu</h4>
+
+        foreach (var menu in menus)
+        {
+            <div class="menu-item d-flex justify-content-between align-items-center p-3 my-0" menu-id="@menu.Id">
+                <h4 class="text-uppercase">@menu.Title</h4>
+                <div class="buttons-section">
+                    <button type="button" class="update-title-btn btn btn-outline-success">Đổi tên</button>
+                    <button type="button" class="delete-btn btn btn-danger">Xoá</button>
+                </div>
+            </div>
+        }
+    }
+</div>
+
+@section Styles {
+    <link rel="stylesheet" href="~/css/menu.css" asp-append-version="true"/>
+}
+
+@section Scripts {
+    <script src="~/js/menu.js" asp-append-version="true"></script>
+}

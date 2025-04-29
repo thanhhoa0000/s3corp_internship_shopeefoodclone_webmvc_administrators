@@ -73,7 +73,8 @@
                asp-controller="Menu" asp-action="VendorCreate" asp-route-storeId="@storeId">
                 Tạo menu
             </a>
-            <a type="button" class="btn btn-dark d-flex align-items-center justify-content-center">
+            <a type="button" class="btn btn-dark d-flex align-items-center justify-content-center"
+               asp-controller="Menu" asp-action="List" asp-route-storeId="@storeId">
                 Quản lí menu
             </a>
         </div>
@@ -158,7 +159,7 @@
                                         <div
                                             class="menu-update-buttons-section d-flex flex-column align-items-end ms-auto mb-5">
                                             <button type="button"
-                                                    class="btn btn-danger d-flex align-items-center justify-content-center delete-products-from-menu-btn"
+                                                    class="btn btn-danger d-flex align-items-center justify-content-center remove-products-from-menu-btn"
                                                     menu-id="@menu.Id">Xoá sản phẩm
                                             </button>
                                         </div>
@@ -233,7 +234,7 @@
                                         <div
                                             class="menu-update-buttons-section d-flex flex-column align-items-end ms-auto mb-5">
                                             <button type="button"
-                                                    class="btn btn-danger d-flex align-items-center justify-content-center delete-products-from-menu-btn"
+                                                    class="btn btn-danger d-flex align-items-center justify-content-center remove-products-from-menu-btn"
                                                     menu-id="@menu.Id">Xoá sản phẩm
                                             </button>
                                         </div>

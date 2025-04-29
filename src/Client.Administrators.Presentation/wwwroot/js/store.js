@@ -214,7 +214,7 @@ $(document).on('click', '.add-products-to-menu-btn', function () {
         }
     });
     $.ajax({
-        url: `/Store/AddProductsToMenu`,
+        url: `/Menu/AddProductsToMenu`,
         type: "POST",
         data: {
             menuId: menuId,
@@ -230,6 +230,38 @@ $(document).on('click', '.add-products-to-menu-btn', function () {
             else {
                 toastr.error(response.message);
             }
+        },
+        error: function () {
+            console.error("Failed to update menu.");
+        }
+    });
+});
+$(document).on('click', '.remove-products-from-menu-btn', function () {
+    const menuId = $(this).attr('menu-id');
+    const $target = $(`.menu-delete-products-section[menu-id="${menuId}"]`);
+    let productIds = [];
+    const $input = $target.find('input[type="checkbox"]');
+    $input.each(function () {
+        const val = $(this).val();
+        if ($(this).is(':checked') && typeof val === 'string') {
+            productIds.push(val);
+        }
+    });
+    $.ajax({
+        url: `/Menu/RemoveProductsFromMenu`,
+        type: "POST",
+        data: {
+            menuId: menuId,
+            productIds: productIds
+        },
+        traditional: true,
+        success: function (response) {
+            if (!response.success) {
+                toastr.error("Đã xảy ra lỗi");
+            }
+            location.reload();
+            toastr.success("Cập nhật menu thành công");
+            document.dispatchEvent(new Event("menuUpdated"));
         },
         error: function () {
             console.error("Failed to update menu.");

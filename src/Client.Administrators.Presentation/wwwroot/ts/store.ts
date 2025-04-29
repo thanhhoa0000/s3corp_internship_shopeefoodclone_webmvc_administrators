@@ -102,7 +102,7 @@ $('form > button').on('click', function (event) {
             $(fileInput).closest('.form-group')!.find('.validate-message').text('Image is required.');
         }
     }
-    
+
     console.log(isValid);
 
     if (isValid) {
@@ -248,7 +248,7 @@ $(document).on('click', '.add-products-to-menu-btn', function () {
     let productIds: string[] = [];
 
     const $input = $target.find('input[type="checkbox"]');
-    
+
     $input.each(function () {
         const val = $(this).val();
         if ($(this).is(':checked') && typeof val === 'string') {
@@ -257,7 +257,7 @@ $(document).on('click', '.add-products-to-menu-btn', function () {
     });
 
     $.ajax({
-        url: `/Store/AddProductsToMenu`,
+        url: `/Menu/AddProductsToMenu`,
         type: "POST",
         data: {
             menuId: menuId,
@@ -266,7 +266,7 @@ $(document).on('click', '.add-products-to-menu-btn', function () {
         traditional: true,
         success: function (response: any): void {
             if (response.success) {
-                
+
                 location.reload();
                 toastr.success(response.message);
                 document.dispatchEvent(new Event("menuUpdated"));
@@ -278,7 +278,43 @@ $(document).on('click', '.add-products-to-menu-btn', function () {
             console.error("Failed to update menu.");
         }
     });
-})
+});
+
+$(document).on('click', '.remove-products-from-menu-btn', function () {
+    const menuId = $(this).attr('menu-id');
+    const $target = $(`.menu-delete-products-section[menu-id="${menuId}"]`);
+    let productIds: string[] = [];
+
+    const $input = $target.find('input[type="checkbox"]');
+
+    $input.each(function () {
+        const val = $(this).val();
+        if ($(this).is(':checked') && typeof val === 'string') {
+            productIds.push(val);
+        }
+    });
+
+    $.ajax({
+        url: `/Menu/RemoveProductsFromMenu`,
+        type: "POST",
+        data: {
+            menuId: menuId,
+            productIds: productIds
+        },
+        traditional: true,
+        success: function (response: any): void {
+            if (!response.success) {
+                toastr.error("Đã xảy ra lỗi");
+            }
+            location.reload();
+            toastr.success("Cập nhật menu thành công");
+            document.dispatchEvent(new Event("menuUpdated"));
+        },
+        error: function (): void {
+            console.error("Failed to update menu.");
+        }
+    });
+});
 
 function getProvinces(): void {
     $.ajax({
