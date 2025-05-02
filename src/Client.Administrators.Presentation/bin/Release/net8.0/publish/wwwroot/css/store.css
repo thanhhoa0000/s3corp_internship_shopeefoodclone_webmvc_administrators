@@ -1,0 +1,260 @@
+.store-details-section {
+    background-color: #FFFFFF;
+    border-radius: 6px;
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+.store-name {
+    font-size: 24px;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.store-address {
+    font-size: 16px;
+    font-weight: 400;
+    font-style: italic;
+}
+
+.store-schedule {
+    font-size: 16px;
+    font-weight: 400;
+}
+
+.opening-hours span {
+    color: #329900;
+    font-weight: 700;
+    margin-left: 25px;
+}
+
+.closing-hours span {
+    color: #bd0734;
+    font-weight: 700;
+    margin-left: 9px;
+}
+
+.last-updated {
+    font-size: 16px;
+    font-weight: 400;
+}
+
+.last-updated span {
+    color: #200F6CFF;
+    font-weight: 700;
+}
+
+.store-img {
+    width: 270px;
+    height: 180px;
+    border-radius: 6px;
+    border: 1px solid #d7d7d7;
+    padding: 0;
+}
+
+.store-img img {
+    width: 100%;
+    height: 100%;
+    border-radius: 6px;
+}
+
+.buttons-section a {
+    font-weight: 700;
+    height: 35px;
+    font-size: 16px;
+    width: 200px;
+}
+
+.products-section {
+    margin: 30px 0;
+}
+
+.products-section h4 {
+    font-size: 20px;
+    font-weight: 700;
+    margin: 30px 0;
+}
+
+.product-name {
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.product-item {
+    background-color: #eae2e2;
+    border-radius: 6px;
+}
+
+.product-img {
+    width: 150px;
+    height: 150px;
+    border-radius: 6px;
+    border: 1px solid #d7d7d7;
+    padding: 0;
+}
+
+.product-img img {
+    width: 100%;
+    height: 100%;
+    border-radius: 6px;
+}
+
+.product-info {
+    margin: 0 15px;
+    width: 770px;
+}
+
+.product-name {
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.product-description {
+    font-size: 12px;
+    font-weight: 400;
+    font-style: italic;
+}
+
+.product-price {
+    font-size: 14px;
+    font-weight: 400;
+    margin: 30px 0;
+}
+
+.product-price div span {
+    font-weight: 700;
+}
+
+.actual-price > span {
+    color: var(--primary-color);
+    margin-left: 10px;
+}
+
+.discount-price > span {
+    color: #404ac1;
+    margin-left: 42px;
+}
+
+.btn-product-edit {
+    font-weight: 700;
+    height: 30px !important;
+    width: 110px;
+    text-align: center;
+}
+
+.product-last-updated {
+    font-size: 13px;
+    font-weight: 400;
+    font-style: italic;
+    margin-top: 30px;
+}
+
+.product-last-updated span {
+    color: #200F6CFF;
+    font-weight: 700;
+}
+
+.menu-title {
+    margin-top: 30px;
+    margin-bottom: 15px;
+    cursor: pointer;
+}
+
+.menu-title h4 {
+    font-size: 18px;
+    font-weight: 400;
+}
+
+.menu-title a {
+    font-size: 16px;
+    font-weight: 700;
+    text-decoration: none;
+    margin-right: 10px;
+    height: 40px;
+}
+
+.menu-update-section, .menu-delete-products-section {
+    margin-bottom: 30px;
+}
+
+.menu-update-section div button, .menu-delete-products-section div button {
+    font-weight: 700;
+    font-size: 14px;
+    height: 35px;
+    width: 150px;
+    text-align: center;
+}
+
+.menu-update-section .products-search, .menu-delete-products-section .products-search {
+    margin: 15px 0;
+}
+
+.menu-update-section .products-search input, .menu-delete-products-section .products-search input {
+    border-radius: 6px;
+}
+
+.menu-update-section .products-search input::placeholder, .menu-delete-products-section .products-search input::placeholder {
+    font-family: var(--primary-font-family), sans-serif;
+    color: #959595
+}
+
+.menu-update-buttons-section button {
+    margin-top: 30px;
+    font-weight: 700;
+    height: 35px;
+}
+
+.menu-update-product-item {
+    margin-top: 10px
+}
+
+.update-store-form {
+    background-color: white;
+    border-radius: 6px;
+    margin: 50px 0;
+}
+
+.update-store-form h4 {
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 50px;
+}
+
+ul {
+    max-height: 500px;
+    overflow-y: auto;
+}
+
+ul li {
+    cursor: pointer;
+}
+
+.update-store-img {
+    width: 240px;
+    height: 160px;
+    margin-bottom: 50px;
+    border-radius: 6px;
+    border: 1px solid #d7d7d7;
+    padding: 0;
+}
+
+.update-store-img img {
+    width: 100%;
+    height: 100%;
+    border-radius: 6px;
+}
+
+.store-address-section {
+    margin: 30px 0;
+}
+
+#detail-address {
+    width: 400px;
+}
+
+.address-validation-message {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--primary-red);
+    margin: 5px;
+}

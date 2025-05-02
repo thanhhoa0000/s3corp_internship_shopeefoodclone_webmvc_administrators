@@ -1,0 +1,35 @@
+form, .menus-list-section {
+    background-color: white;
+    border-radius: 6px;
+    margin: 50px 0;
+}
+
+form h4 {
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 50px;
+}
+
+.menus-list-section h4 {
+    font-size: 24px;
+    font-weight: 700;
+}
+
+.menu-item {
+    background-color: #eae2e2;
+    border-radius: 6px;
+    margin-bottom: 15px !important;
+}
+
+.menu-item h4 {
+    font-size: 20px;
+    font-weight: 400;
+}
+
+.buttons-section button {
+    font-size: 16px;
+    font-weight: 700;
+    height: 35px;
+    width: 150px;
+    text-align: center;
+}

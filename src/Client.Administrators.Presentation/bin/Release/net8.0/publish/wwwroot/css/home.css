@@ -1,0 +1,62 @@
+body {
+    overflow-y: hidden;
+}
+
+.home-stores-section {
+    margin-top: 50px;
+    margin-bottom: 190px;
+    border-radius: 6px;
+    background-color: #FFFFFF;
+}
+
+.home-stores-section h4 {
+    font-size: 24px;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.store-item a {
+    float: left;
+    text-decoration: none;
+    color: #252525;
+    cursor: pointer;
+}
+
+.store-item a .store-img {
+    border-radius: 6px;
+    border: 1px solid #d7d7d7;
+    height: 90px;
+    width: 142px;
+    margin-right: 15px;
+    float: left;
+}
+
+.store-item a .store-img img {
+    border-radius: 6px;
+    height: 100%;
+    width: 100%;
+}
+
+.store-item a .store-info .basic-info h4 {
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.store-item a .store-info .basic-info div {
+    font-size: 14px;
+    font-weight: 400;
+    font-style: italic;
+}
+
+.store-item:hover .basic-info {
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    border-color: #b5b5b5;
+}
+
+.basic-info {
+    height: 90px;
+    padding-left: 10px;
+    padding-right: 10px;
+    border-radius: 6px;
+    transition: box-shadow 0.3s ease-in-out, border-color 0.3s ease-in-out;
+}
