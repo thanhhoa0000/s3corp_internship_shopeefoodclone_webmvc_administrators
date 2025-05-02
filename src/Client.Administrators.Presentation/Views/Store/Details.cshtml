@@ -35,47 +35,47 @@
                     <div class="closing-hours">Giờ đóng cửa:<span
                             class="">@store.ClosingHour.ToString("hh:mm tt")</span></div>
                 </div>
-                @if (store.LastUpdatedAt is not null)
+                @if (store.LastUpdatedAt is not null && store.LastUpdatedAt != store.CreatedAt)
                 {
-                    <div class="last-updated">
-                        Cập nhật lần cuối:
+            <div class="last-updated">
+                Cập nhật lần cuối:
                         @if ((currentTime - store.LastUpdatedAt.Value) < TimeSpan.FromMinutes(1))
                         {
-                            <span class="ms-1">Vừa xong</span>
+                        <span class="ms-1">Vừa xong</span>
                         }
                         else
                         {
-                            <span class="ms-1">
+                        <span class="ms-1">
                                 @((currentTime - store.LastUpdatedAt.Value).Humanize(
-                                    precision: 1,
-                                    culture: new CultureInfo("vi"),
-                                    maxUnit: TimeUnit.Day,
-                                    minUnit: TimeUnit.Minute
-                                )) trước
-                            </span>
+                                        precision: 1,
+                                        culture: new CultureInfo("vi"),
+                                        maxUnit: TimeUnit.Day,
+                                        minUnit: TimeUnit.Minute
+                                    )) trước
+                        </span>
                         }
-                    </div>
+            </div>
                 }
                 else
                 {
-                    <div class="last-updated">
-                        Thời điểm khởi tạo:
-                        @if ((currentTime - store.CreatedAt) < TimeSpan.FromMinutes(1))
+            <div class="last-updated">
+                Thời điểm khởi tạo:
+                        @if ((currentTime - store.CreatedAt.ToUniversalTime()) < TimeSpan.FromMinutes(1))
                         {
-                            <span class="ms-1">Vừa xong</span>
+                        <span class="ms-1">Vừa xong</span>
                         }
                         else
                         {
-                            <span class="ms-1" style="color: darkred">
-                                @((currentTime - store.CreatedAt).Humanize(
-                                    precision: 1,
-                                    culture: new CultureInfo("vi"),
-                                    maxUnit: TimeUnit.Day,
-                                    minUnit: TimeUnit.Minute
-                                )) trước
-                            </span>
+                        <span class="ms-1" style="color: darkred">
+                                @((currentTime - store.CreatedAt.ToUniversalTime()).Humanize(
+                                        precision: 1,
+                                        culture: new CultureInfo("vi"),
+                                        maxUnit: TimeUnit.Day,
+                                        minUnit: TimeUnit.Minute
+                                    )) trước
+                        </span>
                         }
-                    </div>
+            </div>
                 }
 
             </div>
@@ -133,7 +133,7 @@
                                         </div>
 
                                         <div class="products-list">
-                                            @foreach (var product in products.Where(p => p.Menus.Any(i => i.Id != menu.Id)))
+                                            @foreach (var product in products.Where(p => p.Menus.Any(i => i.Id != menu.Id) || p.Menus.Count == 0))
                                             {
                                                 <div
                                                     class="form-check menu-update-product-item border-bottom ms-5 pb-1">
@@ -208,7 +208,7 @@
                                         </div>
 
                                         <div class="products-list">
-                                            @foreach (var product in products.Where(p => p.Menus.Any(i => i.Id != menu.Id)))
+                                            @foreach (var product in products.Where(p => p.Menus.Any(i => i.Id != menu.Id) || p.Menus.Count == 0))
                                             {
                                                 <div
                                                     class="form-check menu-update-product-item border-bottom ms-5 pb-1">
