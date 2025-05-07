@@ -17,10 +17,10 @@
         <div class="row m-0">
             <div class="store-img col-auto me-3">
                 <img
-                    class="img-fluid"
-                    alt=""
-                    src="@Url.Content($"~/images{store.CoverImagePath}")"
-                    onerror="
+                class="img-fluid"
+                alt=""
+                src="@Url.Content($"~/images{store.CoverImagePath}")"
+                onerror="
                     this.onerror = null; 
                     this.src = '/images/stores/default-store-cover-img.jpg'"/>
             </div>
@@ -28,54 +28,54 @@
             <div class="store-info col-auto">
                 <h4 class="store-name">@store.Name</h4>
                 <div
-                    class="store-address">@store.StreetName, @store.Ward!.FullName, @store.Ward.District!.FullName, @store.Ward.District.Province!.Name</div>
+                class="store-address">@store.StreetName, @store.Ward!.FullName, @store.Ward.District!.FullName, @store.Ward.District.Province!.Name</div>
                 <div class="store-schedule">
                     <div class="opening-hours">Giờ mở cửa:<span class="">@store.OpeningHour.ToString("hh:mm tt")</span>
                     </div>
                     <div class="closing-hours">Giờ đóng cửa:<span
-                            class="">@store.ClosingHour.ToString("hh:mm tt")</span></div>
+                        class="">@store.ClosingHour.ToString("hh:mm tt")</span></div>
                 </div>
-                @if (store.LastUpdatedAt is not null && store.LastUpdatedAt != store.CreatedAt)
+                @if (store.LastUpdatedAt is not null)
                 {
-            <div class="last-updated">
-                Cập nhật lần cuối:
+                    <div class="last-updated">
+                        Cập nhật lần cuối:
                         @if ((currentTime - store.LastUpdatedAt.Value) < TimeSpan.FromMinutes(1))
                         {
-                        <span class="ms-1">Vừa xong</span>
+                            <span class="ms-1">Vừa xong</span>
                         }
                         else
                         {
-                        <span class="ms-1">
+                            <span class="ms-1">
                                 @((currentTime - store.LastUpdatedAt.Value).Humanize(
-                                        precision: 1,
-                                        culture: new CultureInfo("vi"),
-                                        maxUnit: TimeUnit.Day,
-                                        minUnit: TimeUnit.Minute
-                                    )) trước
-                        </span>
+                                            precision: 1,
+                                            culture: new CultureInfo("vi"),
+                                            maxUnit: TimeUnit.Day,
+                                            minUnit: TimeUnit.Minute
+                                        )) trước
+                            </span>
                         }
-            </div>
+                    </div>
                 }
                 else
                 {
-            <div class="last-updated">
-                Thời điểm khởi tạo:
+                    <div class="last-updated">
+                        Thời điểm khởi tạo:
                         @if ((currentTime - store.CreatedAt.ToUniversalTime()) < TimeSpan.FromMinutes(1))
                         {
-                        <span class="ms-1">Vừa xong</span>
+                            <span class="ms-1">Vừa xong</span>
                         }
                         else
                         {
-                        <span class="ms-1" style="color: darkred">
+                            <span class="ms-1" style="color: darkred">
                                 @((currentTime - store.CreatedAt.ToUniversalTime()).Humanize(
-                                        precision: 1,
-                                        culture: new CultureInfo("vi"),
-                                        maxUnit: TimeUnit.Day,
-                                        minUnit: TimeUnit.Minute
-                                    )) trước
-                        </span>
+                                            precision: 1,
+                                            culture: new CultureInfo("vi"),
+                                            maxUnit: TimeUnit.Day,
+                                            minUnit: TimeUnit.Minute
+                                        )) trước
+                            </span>
                         }
-            </div>
+                    </div>
                 }
 
             </div>
@@ -83,19 +83,19 @@
 
         <div class="buttons-section d-flex flex-column align-items-end ms-auto mb-5">
             <a type="button" class="btn btn-success d-flex align-items-center justify-content-center mb-2"
-               asp-controller="Store" asp-action="VendorUpdate" asp-route-storeId="@storeId">
+            asp-controller="Store" asp-action="VendorUpdate" asp-route-storeId="@storeId">
                 Chỉnh sửa cửa hàng
             </a>
             <a type="button" class="btn btn-orange d-flex align-items-center justify-content-center mb-2"
-               asp-controller="Product" asp-action="Create" asp-route-storeId="@storeId">
+            asp-controller="Product" asp-action="Create" asp-route-storeId="@storeId">
                 Thêm sản phẩm
             </a>
             <a type="button" class="btn btn-outline-primary d-flex align-items-center justify-content-center mb-2"
-               asp-controller="Menu" asp-action="VendorCreate" asp-route-storeId="@storeId">
+            asp-controller="Menu" asp-action="VendorCreate" asp-route-storeId="@storeId">
                 Tạo menu
             </a>
             <a type="button" class="btn btn-dark d-flex align-items-center justify-content-center"
-               asp-controller="Menu" asp-action="List" asp-route-storeId="@storeId">
+            asp-controller="Menu" asp-action="List" asp-route-storeId="@storeId">
                 Quản lí menu
             </a>
         </div>
@@ -118,8 +118,8 @@
                                 <div class="menu-group" menu-id="@menu.Id">
                                     <div class="menu-title d-flex align-items-center" menu-id="@menu.Id">
                                         <h4 class="text-uppercase"><i
-                                                class="bi bi-pencil-square me-1"></i>@menu.Title <span
-                                                class="text-lowercase fst-italic">(chưa có sản phẩm)</span></h4>
+                                            class="bi bi-pencil-square me-1"></i>@menu.Title <span
+                                            class="text-lowercase fst-italic">(chưa có sản phẩm)</span></h4>
                                     </div>
 
                                     <div class="menu-update-section" menu-id="@menu.Id" hidden>
@@ -129,27 +129,27 @@
                                         </div>
                                         <div class="products-search">
                                             <input class="form-control" type="search" placeholder="Tìm món"
-                                                   aria-label="Tìm món"/>
+                                            aria-label="Tìm món"/>
                                         </div>
 
                                         <div class="products-list">
                                             @foreach (var product in products.Where(p => p.Menus.Any(i => i.Id != menu.Id) || p.Menus.Count == 0))
                                             {
                                                 <div
-                                                    class="form-check menu-update-product-item border-bottom ms-5 pb-1">
+                                                class="form-check menu-update-product-item border-bottom ms-5 pb-1">
                                                     <input class="form-check-input" type="checkbox" id="@product.Id"
-                                                           value="@product.Id"/>
+                                                    value="@product.Id"/>
                                                     <label class="form-check-label"
-                                                           for="@product.Id">@product.Name</label>
+                                                    for="@product.Id">@product.Name</label>
                                                 </div>
                                             }
                                         </div>
 
                                         <div
-                                            class="menu-update-buttons-section d-flex flex-column align-items-end ms-auto mb-5">
+                                        class="menu-update-buttons-section d-flex flex-column align-items-end ms-auto mb-5">
                                             <button type="button"
-                                                    class="btn btn-success d-flex align-items-center justify-content-center add-products-to-menu-btn"
-                                                    menu-id="@menu.Id">Cập nhật menu
+                                            class="btn btn-success d-flex align-items-center justify-content-center add-products-to-menu-btn"
+                                            menu-id="@menu.Id">Cập nhật menu
                                             </button>
                                         </div>
                                     </div>
@@ -161,27 +161,27 @@
                                         </div>
                                         <div class="products-search">
                                             <input class="form-control" type="search" placeholder="Tìm món"
-                                                   aria-label="Tìm món"/>
+                                            aria-label="Tìm món"/>
                                         </div>
 
                                         <div class="products-list">
                                             @foreach (var product in products.Where(p => p.Menus.Any(i => i.Id == menu.Id)))
                                             {
                                                 <div
-                                                    class="form-check menu-update-product-item border-bottom ms-5 pb-1">
+                                                class="form-check menu-update-product-item border-bottom ms-5 pb-1">
                                                     <input class="form-check-input" type="checkbox" id="@product.Id"
-                                                           value="@product.Id"/>
+                                                    value="@product.Id"/>
                                                     <label class="form-check-label"
-                                                           for="@product.Id">@product.Name</label>
+                                                    for="@product.Id">@product.Name</label>
                                                 </div>
                                             }
                                         </div>
 
                                         <div
-                                            class="menu-update-buttons-section d-flex flex-column align-items-end ms-auto mb-5">
+                                        class="menu-update-buttons-section d-flex flex-column align-items-end ms-auto mb-5">
                                             <button type="button"
-                                                    class="btn btn-danger d-flex align-items-center justify-content-center remove-products-from-menu-btn"
-                                                    menu-id="@menu.Id">Xoá sản phẩm
+                                            class="btn btn-danger d-flex align-items-center justify-content-center remove-products-from-menu-btn"
+                                            menu-id="@menu.Id">Xoá sản phẩm
                                             </button>
                                         </div>
                                     </div>
@@ -193,7 +193,7 @@
                                 <div class="menu-group" menu-id="@menu.Id">
                                     <div class="menu-title d-flex align-items-center" menu-id="@menu.Id">
                                         <h4 class="text-uppercase"><i
-                                                class="bi bi-pencil-square me-1"></i>@menu.Title</h4>
+                                            class="bi bi-pencil-square me-1"></i>@menu.Title</h4>
                                     </div>
 
                                     <div class="menu-update-section" menu-id="@menu.Id" hidden>
@@ -204,27 +204,27 @@
                                         </div>
                                         <div class="products-search">
                                             <input class="form-control" type="search" placeholder="Tìm món"
-                                                   aria-label="Tìm món"/>
+                                            aria-label="Tìm món"/>
                                         </div>
 
                                         <div class="products-list">
                                             @foreach (var product in products.Where(p => p.Menus.Any(i => i.Id != menu.Id) || p.Menus.Count == 0))
                                             {
                                                 <div
-                                                    class="form-check menu-update-product-item border-bottom ms-5 pb-1">
+                                                class="form-check menu-update-product-item border-bottom ms-5 pb-1">
                                                     <input class="form-check-input" type="checkbox" id="@product.Id"
-                                                           value="@product.Id"/>
+                                                    value="@product.Id"/>
                                                     <label class="form-check-label"
-                                                           for="@product.Id">@product.Name</label>
+                                                    for="@product.Id">@product.Name</label>
                                                 </div>
                                             }
                                         </div>
 
                                         <div
-                                            class="menu-update-buttons-section d-flex flex-column align-items-end ms-auto mb-5">
+                                        class="menu-update-buttons-section d-flex flex-column align-items-end ms-auto mb-5">
                                             <button type="button"
-                                                    class="btn btn-success d-flex align-items-center justify-content-center add-products-to-menu-btn"
-                                                    menu-id="@menu.Id">Cập nhật menu
+                                            class="btn btn-success d-flex align-items-center justify-content-center add-products-to-menu-btn"
+                                            menu-id="@menu.Id">Cập nhật menu
                                             </button>
                                         </div>
                                     </div>
@@ -236,43 +236,43 @@
                                         </div>
                                         <div class="products-search">
                                             <input class="form-control" type="search" placeholder="Tìm món"
-                                                   aria-label="Tìm món"/>
+                                            aria-label="Tìm món"/>
                                         </div>
 
                                         <div class="products-list">
                                             @foreach (var product in products.Where(p => p.Menus.Any(i => i.Id == menu.Id)))
                                             {
                                                 <div
-                                                    class="form-check menu-update-product-item border-bottom ms-5 pb-1">
+                                                class="form-check menu-update-product-item border-bottom ms-5 pb-1">
                                                     <input class="form-check-input" type="checkbox" id="@product.Id"
-                                                           value="@product.Id"/>
+                                                    value="@product.Id"/>
                                                     <label class="form-check-label"
-                                                           for="@product.Id">@product.Name</label>
+                                                    for="@product.Id">@product.Name</label>
                                                 </div>
                                             }
                                         </div>
 
                                         <div
-                                            class="menu-update-buttons-section d-flex flex-column align-items-end ms-auto mb-5">
+                                        class="menu-update-buttons-section d-flex flex-column align-items-end ms-auto mb-5">
                                             <button type="button"
-                                                    class="btn btn-danger d-flex align-items-center justify-content-center remove-products-from-menu-btn"
-                                                    menu-id="@menu.Id">Xoá sản phẩm
+                                            class="btn btn-danger d-flex align-items-center justify-content-center remove-products-from-menu-btn"
+                                            menu-id="@menu.Id">Xoá sản phẩm
                                             </button>
                                         </div>
                                     </div>
                                 </div>
 
-                                foreach (var product in products.Where(p => p.Menus.Any(i => i.Id == menu.Id)))
+                                foreach (var product in products.Where(p => p.Menus.Any(i => i.Id == menu.Id)).OrderBy(p => p.Price).ToList())
                                 {
                                     <div class="product-item row m-0 mb-3 p-3 ms-2" product-id="@product.Id">
                                         <div class="product-img col-auto">
                                             <img
-                                                class=""
-                                                alt=""
-                                                src="@Url.Content($"~/images{product.CoverImagePath}")"
-                                                onerror="
-                                    this.onerror = null; 
-                                    this.src = '/images/stores/product-img.jpg'"/>
+                                            class=""
+                                            alt=""
+                                            src="@Url.Content($"~/images{product.CoverImagePath}")"
+                                            onerror="
+                                                    this.onerror = null; 
+                                                    this.src = '/images/stores/product-img.jpg'"/>
                                         </div>
 
                                         <div class="product-info col-auto">
@@ -290,11 +290,32 @@
                                                     {
                                                         <span class="ms-1">
                                                             @((currentTime - product.LastUpdatedAt.Value).Humanize(
+                                                                    precision: 1,
+                                                                    culture: new CultureInfo("vi"),
+                                                                    maxUnit: TimeUnit.Day,
+                                                                    minUnit: TimeUnit.Minute
+                                                                )) trước
+                                                        </span>
+                                                    }
+                                                </div>
+                                            }
+                                            else
+                                            {
+                                                <div class="product-last-updated">
+                                                    Thời điểm khởi tạo:
+                                                    @if ((currentTime - product.CreatedAt.ToUniversalTime()) < TimeSpan.FromMinutes(1))
+                                                    {
+                                                        <span class="ms-1" style="color: darkred">Vừa xong</span>
+                                                    }
+                                                    else
+                                                    {
+                                                        <span class="ms-1" style="color: darkred">
+                                                            @((currentTime - product.CreatedAt.ToUniversalTime()).Humanize(
                                                                 precision: 1,
                                                                 culture: new CultureInfo("vi"),
                                                                 maxUnit: TimeUnit.Day,
                                                                 minUnit: TimeUnit.Minute
-                                                            )) trước
+                                                                )) trước
                                                         </span>
                                                     }
                                                 </div>
@@ -350,7 +371,7 @@
                 {
                     <h4 class="text-uppercase">Danh sách sản phẩm không thuộc menu nào</h4>
 
-                    foreach (var product in products.Where(p => p.Menus.Count == 0))
+                    foreach (var product in products.Where(p => p.Menus.Count == 0).OrderBy(p => p.Price).ToList())
                     {
                         <div class="product-item row m-0 mb-3 p-3" product-id="@product.Id">
                             <div class="product-img col-auto">
@@ -383,6 +404,27 @@
                                                     maxUnit: TimeUnit.Day,
                                                     minUnit: TimeUnit.Minute
                                                 )) trước
+                                            </span>
+                                        }
+                                    </div>
+                                }
+                                else
+                                {
+                                    <div class="product-last-updated">
+                                        Thời điểm khởi tạo:
+                                        @if ((currentTime - product.CreatedAt.ToUniversalTime()) < TimeSpan.FromMinutes(1))
+                                        {
+                                            <span class="ms-1" style="color: darkred">Vừa xong</span>
+                                        }
+                                        else
+                                        {
+                                            <span class="ms-1" style="color: darkred">
+                                                @((currentTime - product.CreatedAt.ToUniversalTime()).Humanize(
+                                                    precision: 1,
+                                                    culture: new CultureInfo("vi"),
+                                                    maxUnit: TimeUnit.Day,
+                                                    minUnit: TimeUnit.Minute
+                                                    )) trước
                                             </span>
                                         }
                                     </div>
